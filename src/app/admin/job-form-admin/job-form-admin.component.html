@@ -1,0 +1,85 @@
+<form [formGroup]="form" autocomplete="off" novalidate>
+    <div class="col-lg-6">
+        <h3>Thông tin công việc</h3>
+
+        <div class="form-group">
+            <label>Tên công việc</label>
+            <input class="form-control" formControlName="jobTitle">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+
+        <div class="form-group">
+            <label>Tên công ty</label>
+            <input class="form-control" formControlName="companyName">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+
+        <div class="form-group" formGroupName="jobType">
+            <label>Thể loại công việc</label>
+            
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" formControlName="fullTime">Full-time
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" formControlName="partTime">Part-time
+                </label>
+            </div>
+            
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" formControlName="intern">Thực tập
+                </label>
+            </div>
+            
+        </div>
+
+        <div class="form-group">
+            <label>Mô tả công việc</label>
+            <textarea class="form-control" rows="3" formControlName="jobDescription"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Cách thưc ứng tuyển</label>
+            <textarea class="form-control" rows="3" formControlName="applyMethod"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Deadline nộp đơn</label>
+            <input class="form-control" formControlName="deadline">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+        <h3>Thông tin công ty</h3>
+
+        <div class="form-group">
+            <label>Liên hệ</label>
+            <input class="form-control" formControlName="contact">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+        <div class="form-group">
+            <label>Website (nếu có)</label>
+            <input class="form-control" formControlName="companyDescription">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+        <div class="form-group">
+            <label>Giới thiệu công ty</label>
+            <textarea class="form-control" rows="3" formControlName="website"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Ảnh logo</label>
+            <input type="file" (change)="onFileChange($event)">
+        </div>
+        <div class="form-group">
+            <input class="form-control" formControlName="logo">
+            <br>
+            <img [src]="this.form.controls['logo'].value" id="logo_img">
+        </div>
+    </div>
+</form>

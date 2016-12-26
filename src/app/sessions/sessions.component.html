@@ -1,0 +1,64 @@
+<div class="border"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="logo-login">
+                <a [routerLink]="['/jobs']"><img src="assets/images/smile.svg" class="img-responsive" alt="Logo"></a>
+            </div>
+            <div class="at-form">
+
+                <div class="at-title">
+                    <h3>Đăng nhập</h3>
+                </div>
+
+                <div class="at-oauth">
+
+                    <!--<button class="btn at-social-btn" id="at-facebook" name="facebook" (click)="onLoginFacebook()">
+                        <i class="fa fa-facebook"></i> Đăng nhập bằng Facebook
+                    </button>-->
+
+                    <!--<button class="btn at-social-btn" id="at-google" name="google" (click)="onLoginGoogle()">
+                        <i class="fa fa-google"></i> Đăng nhập bằng Google
+                    </button>-->
+
+                </div>
+
+                <hr>
+  
+                <div class="at-pwd-form">
+                    <form role="form" id="at-pwd-form" autocomplete="off" novalidate [formGroup]="loginForm">
+                        <fieldset>
+                            <div class="at-input form-group">
+                                <label class="control-label sr-only" for="at-field-email">
+                                Email 
+                                </label>
+                                <input type="email" class="form-control" id="at-field-email" name="at-field-email" placeholder="Email" autocapitalize="none" autocorrect="off"
+                                formControlName="email">
+                            </div>
+
+                            <div class="at-input form-group">
+                                <label class="control-label sr-only" for="at-field-password">
+                                Password 
+                                </label>
+                                <input type="password" class="form-control" id="at-field-password" name="at-field-password" placeholder="Password" autocapitalize="none" autocorrect="off"
+                                formControlName="password">
+                            </div>
+
+                            <!--<div class="at-pwd-link">
+                                <p>
+                                    <a href="#" id="at-forgotPwd" class="at-link at-pwd">Quên mật khẩu?</a>
+                                </p>
+                            </div>-->
+    
+                            <button type="submit" class="at-btn submit btn btn-lg btn-block btn-default" id="at-btn"
+                            (click)="onLoginEmail()">
+                                Đăng nhập
+                            </button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

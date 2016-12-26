@@ -1,0 +1,48 @@
+<div class="container job_detail">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="job_detail_title">{{(job$ | async)?.jobTitle}}</h3>
+                    <h4 class="job_detail_location"><i class="fa fa-building" aria-hidden="true"></i> tại {{(job$ | async)?.companyName}}, Hà Nội</h4>
+                    <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_lg hidden-xs">Ứng tuyển (Deadline {{(job$ | async)?.deadline}})</a>
+                    <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_sm visible-xs">Ứng tuyển <br>
+                    (Deadline {{(job$ | async)?.deadline}})</a>
+                    <table class="job_detail_brief">
+                        <tbody>
+                            <tr>
+                                <td>LOẠI CÔNG VIỆC</td>
+                                <td>Part Time</td>
+                            </tr>
+                            <tr>
+                                <td>WEBSITE</td>
+                                <td><a href="#">{{(job$ | async)?.website}}</a></td>
+                            </tr>
+                            <tr>
+                                <td>MỨC LƯƠNG</td>
+                                <td>Thỏa thuận</td>
+                            </tr>
+                            <tr>
+                                <td>ĐỊA CHỈ</td>
+                                <td>P111 - D3, Thanh Xuân Bắc, Thanh Xuân, Hà Nội</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-body">
+                    {{(job$ | async)?.description}}
+                    <h4 id="apply">Cách thức ứng tuyển</h4>
+                    {{(job$ | async)?.applyMethod}}
+                </div>
+
+                <div class="panel-footer">
+                    <h3>Giới thiệu về công ty</h3>
+                    <p class="job_detail_logo">
+                        <img [src]="(job$ | async)?.logo" [alt]="(job$ | async)?.companyName">
+                        {{(job$ | async)?.companyDescription}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

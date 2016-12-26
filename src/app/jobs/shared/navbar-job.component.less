@@ -1,0 +1,86 @@
+@import "../../shared/less/variables.less";
+
+.main_header {
+    margin: 4em 0 3em 0;
+}
+
+.logo {
+    a, a:hover, a:focus, a:active {
+        text-decoration: none,
+    }
+    img {
+        width: 75px;
+        float: left;
+    }
+    h1 {
+        float: left;
+        margin-top: 0em;
+        margin-left: 1em;
+        text-transform: uppercase;
+        font-size: 1.6em;
+        padding-top: 1.1em;
+        color: #371900;
+        font-weight: 700;
+        letter-spacing: 1px;
+        span {
+            font-weight: 400;
+        }
+    }
+}
+
+.main-nav {
+    float: right;
+    padding-top: 1.5em;
+    a {
+        color: #74718f;
+        margin-left: 1.3em;
+        text-decoration: none;
+        letter-spacing: 1px;
+        font-size: 1.1em;
+    }
+    .custom_btn {
+        background: @highlight_1;
+        color: white;
+        border: @highlight_1;
+        border-radius: 100em;
+        &:hover {
+            background: darken(@highlight_1, 10);
+            border: darken(@highlight_1, 10);
+        }
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .main_header {
+        margin-top: 3em;
+    }
+    .logo {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        img {
+            float: none;
+        }
+        h1 {
+            float: none;
+            margin: 0;
+            font-size: 1.4em;
+        }
+    }
+
+    .main-nav {
+        float: none;
+        text-align: center;
+        a {
+            margin: 0 .5em;
+        }
+    }
+}
+
+@media only screen and (max-width: 451px) {
+    .main-nav {
+        .custom_btn {
+            margin-top: 1em;
+        }
+    }
+}

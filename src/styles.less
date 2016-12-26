@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./app/shared/less/variables.less";
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+body.admin {
+    background: @gray-lightest;
+}
+
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.border {
+  height: 6px;
+  border: 0;
+  background-color: red;
+  background-image:
+    linear-gradient(
+      to right, 
+      @highlight_1,
+      @highlight_1 25%,
+      @highlight_2 25%,
+      @highlight_2 50%,
+      @highlight_3 50%,
+      @highlight_3 75%,
+      @highlight_4 75%,
+      @highlight_4 100%,
+      @highlight_4 100%
+    );
+
+  -webkit-background-size: 50% 100%;
+  -moz-background-size: 50% 100%;
+  background-size: 50% 100%;
+}
+.wrapper {
+    padding-bottom: 5em;
+    width: 750px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+a {
+    cursor: pointer;
+}
