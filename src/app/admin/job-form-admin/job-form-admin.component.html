@@ -5,72 +5,86 @@
         <div class="form-group">
             <label>Tên công việc</label>
             <input class="form-control" formControlName="jobTitle">
-            <p class="help-block">Example block-level help text here.</p>
         </div>
 
         <div class="form-group">
             <label>Tên công ty</label>
             <input class="form-control" formControlName="companyName">
-            <p class="help-block">Example block-level help text here.</p>
         </div>
 
-        <div class="form-group" formGroupName="jobType">
+        <div class="form-group">
+            <label>Địa điểm</label>
+            <input class="form-control" formControlName="city">
+        </div>
+
+        <div class="form-group">
+            <label>Địa chỉ làm việc</label>
+            <input class="form-control" formControlName="address">
+        </div>
+
+        <div class="form-group">
             <label>Thể loại công việc</label>
             
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" formControlName="fullTime">Full-time
-                </label>
+            <div class="radio">
+                <label><input type="radio" value="fulltime" formControlName="jobType">Full-time</label>
             </div>
 
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" formControlName="partTime">Part-time
-                </label>
+            <div class="radio">
+                <label><input type="radio" value="parttime" formControlName="jobType">Part-time</label>
             </div>
             
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" formControlName="intern">Thực tập
-                </label>
-            </div>
+            <!--<div class="radio">
+                <label><input type="radio" value="intern" formControlName="jobType">Thực tập</label>
+            </div>-->
             
+        </div>
+
+        <div class="form-group">
+            <label>Deadline</label>
+            <input type="text" class="form-control" formControlName="deadline">
+        </div>
+
+        <div class="form-group">
+            <label>Mức lương</label>
+            <input class="form-control" formControlName="wage">
         </div>
 
         <div class="form-group">
             <label>Mô tả công việc</label>
-            <textarea class="form-control" rows="3" formControlName="jobDescription"></textarea>
+            <ckeditor formControlName="description"></ckeditor>
+        </div>
+        
+        <div class="form-group">
+            <label>Cách thức ứng tuyển</label>
+            <ckeditor formControlName="applyMethod"></ckeditor>
         </div>
 
         <div class="form-group">
-            <label>Cách thưc ứng tuyển</label>
-            <textarea class="form-control" rows="3" formControlName="applyMethod"></textarea>
+            <label>Cách thức ứng tuyển</label>
+            <input class="form-control" formControlName="url">
         </div>
 
-        <div class="form-group">
-            <label>Deadline nộp đơn</label>
-            <input class="form-control" formControlName="deadline">
-            <p class="help-block">Example block-level help text here.</p>
-        </div>
+        <!--<div class="form-group">
+            <label>Hiển thị</label>
+            
+            <div class="radio">
+                <label><input type="radio" [value]="true" formControlName="active">Có</label>
+            </div>
+
+            <div class="radio">
+                <label><input type="radio" [value]="false" formControlName="active">Không</label>
+            </div>
+        </div>-->
 
     </div>
 
+    <hr class="hidden-md hidden-lg">
+
     <div class="col-lg-6">
         <h3>Thông tin công ty</h3>
-
-        <div class="form-group">
-            <label>Liên hệ</label>
-            <input class="form-control" formControlName="contact">
-            <p class="help-block">Example block-level help text here.</p>
-        </div>
-        <div class="form-group">
-            <label>Website (nếu có)</label>
-            <input class="form-control" formControlName="companyDescription">
-            <p class="help-block">Example block-level help text here.</p>
-        </div>
         <div class="form-group">
             <label>Giới thiệu công ty</label>
-            <textarea class="form-control" rows="3" formControlName="website"></textarea>
+            <ckeditor formControlName="companyDescription"></ckeditor>
         </div>
         <div class="form-group">
             <label>Ảnh logo</label>

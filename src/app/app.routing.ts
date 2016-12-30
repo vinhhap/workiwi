@@ -14,16 +14,18 @@ import { LoginGuard } from "./shared/services/login.guard";
 
 const APP_ROUTES: Routes = [
     { path: "jobs", component: JobsComponent, children: [
-        { path: ":id", component: JobDetailComponent },
+        { path: ":id/:url", component: JobDetailComponent },
         { path: "", component: JobsListComponent }
     ] },
     { path: "admin", component: AdminComponent, canActivate: [AuthGuard], children: [
+    // { path: "admin", component: AdminComponent, children: [
         { path: "new", component: NewJobComponent },
-        { path: "edit/:id", component: EditJobComponent },
+        { path: "edit/:id/:url", component: EditJobComponent },
         { path: "jobs", component: JobsListAdminComponent },
         { path: "", redirectTo: "jobs", pathMatch: "full"}
     ] },
     { path: "login", component: SessionsComponent, canActivate: [LoginGuard] },
+    // { path: "login", component: SessionsComponent },
     { path: "", redirectTo: "jobs", pathMatch: "full"},
     { path: '**', redirectTo: 'jobs' }
 ];

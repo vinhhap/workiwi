@@ -15,4 +15,14 @@ export class JobItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  getJobType(jobType: string) {
+    switch(jobType) {
+      case "fulltime":
+        return "Full-time";
+      case "parttime":
+        return "Part-time";
+      case "intern":
+        return "Thực tập";
+    }
+  }
 }

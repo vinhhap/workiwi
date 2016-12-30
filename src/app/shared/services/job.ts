@@ -3,34 +3,38 @@ export class Job {
         public $key: string,
         public jobTitle: string,
         public companyName: string,
-        public jobType: any,
-        public jobDescription: string,
+        public city: string,
+        public jobType: string,
+        public wage: string,
+        public address: string,
+        public description: string,
         public applyMethod: string,
         public deadline: string,
-        public contact:string,
-        public companyDescription: string,
-        public website: string,
-        public logo: string
+        public url: string,
+        public companyDescription?: string,
+        public logo?: string,
     ) {}
 
     static fromJsonList(array): Job[] {
         return array.map(Job.fromJson);
     }
 
-    static fromJson({$key, jobTitle, companyName,
-        jobType, jobDescription, applyMethod,
-        deadline, contact, companyDescription, website, logo}): Job {
+    static fromJson({$key, jobTitle, companyName, city,
+        jobType, wage, address, description, applyMethod,
+        deadline, url, companyDescription, logo}): Job {
         return new Job(
             $key,
             jobTitle,
             companyName,
+            city,
             jobType,
-            jobDescription,
+            wage,
+            address,
+            description,
             applyMethod,
             deadline,
-            contact,
+            url,
             companyDescription,
-            website,
             logo
         )
     }

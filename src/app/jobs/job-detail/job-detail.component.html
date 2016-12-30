@@ -4,42 +4,41 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="job_detail_title">{{(job$ | async)?.jobTitle}}</h3>
-                    <h4 class="job_detail_location"><i class="fa fa-building" aria-hidden="true"></i> tại {{(job$ | async)?.companyName}}, Hà Nội</h4>
-                    <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_lg hidden-xs">Ứng tuyển (Deadline {{(job$ | async)?.deadline}})</a>
-                    <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_sm visible-xs">Ứng tuyển <br>
-                    (Deadline {{(job$ | async)?.deadline}})</a>
+                    <h4 class="job_detail_location"><i class="fa fa-building" aria-hidden="true"></i> tại {{(job$ | async)?.companyName}}, {{(job$ | async)?.city}}</h4>
+                    <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_lg hidden-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ứng tuyển</a>
+                    <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_sm visible-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ứng tuyển</a>
                     <table class="job_detail_brief">
                         <tbody>
                             <tr>
                                 <td>LOẠI CÔNG VIỆC</td>
-                                <td>Part Time</td>
+                                <td>{{getJobType((job$ | async)?.jobType)}}</td>
                             </tr>
                             <tr>
-                                <td>WEBSITE</td>
-                                <td><a href="#">{{(job$ | async)?.website}}</a></td>
+                                <td>DEADLINE</td>
+                                <td>{{(job$ | async)?.deadline}}</td>
                             </tr>
                             <tr>
                                 <td>MỨC LƯƠNG</td>
-                                <td>Thỏa thuận</td>
+                                <td>{{(job$ | async)?.wage}}</td>
                             </tr>
                             <tr>
-                                <td>ĐỊA CHỈ</td>
-                                <td>P111 - D3, Thanh Xuân Bắc, Thanh Xuân, Hà Nội</td>
+                                <td>ĐỊA ĐIỂM LÀM VIỆC</td>
+                                <td>{{(job$ | async)?.address}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="panel-body">
-                    {{(job$ | async)?.description}}
-                    <h4 id="apply">Cách thức ứng tuyển</h4>
-                    {{(job$ | async)?.applyMethod}}
+                    <div [innerHTML]="(job$ | async)?.description"></div>
+                    <h3 id="apply">Cách thức ứng tuyển</h3>
+                    <div [innerHTML]="(job$ | async)?.applyMethod"></div>
                 </div>
 
-                <div class="panel-footer">
+                <div class="panel-footer" *ngIf="(job$ | async)?.companyName || (job$ | async)?.companyDescription">
                     <h3>Giới thiệu về công ty</h3>
                     <p class="job_detail_logo">
                         <img [src]="(job$ | async)?.logo" [alt]="(job$ | async)?.companyName">
-                        {{(job$ | async)?.companyDescription}}
+                        <span [innerHTML]="(job$ | async)?.companyDescription"></span>
                     </p>
                 </div>
             </div>

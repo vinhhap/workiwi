@@ -7,9 +7,9 @@
         
     </div>
     <nav class="main-nav">
-        <a href="#">Full-Time</a>
-        <a href="#">Part-Time</a>
-        <a href="#">Thực tập</a>
+        <a [routerLink]="['/jobs']">Tất cả</a>
+        <a [routerLink]="['/jobs']" [queryParams]="{ type: 'fulltime' }">Full-Time</a>
+        <a [routerLink]="['/jobs']" [queryParams]="{ type: 'parttime' }">Part-Time</a>
         <a href="#" class="btn btn-default custom_btn">Đăng việc</a>
     </nav>
 </header>

@@ -19,18 +19,32 @@ export class JobService {
     return this.af.database.list("jobs").map(Job.fromJsonList);
   }
 
+  findJobByType(type: string): Observable<Job[]> {
+    return this.af.database.list("jobs", {
+      query: {
+        orderByChild: "jobType",
+        equalTo: type
+      }
+    }).map(Job.fromJsonList);
+  }
+
   findJobById(jobId: string): Observable<Job> {
     return this.af.database.object(`jobs/${jobId}`).map(Job.fromJson);
   }
 
   createNewJob(job: Job): void {
     let jobs = this.af.database.list("jobs");
-    jobs.push(job).then((item) => { this.router.navigate(["/jobs", item.key]) });
+    jobs.push(job).then((item) => { this.router.navigate(["/jobs", item.key, item.url]) });
   }
   
   editJob(job: Job, jobId: string): void {
     let theJob = this.af.database.object(`jobs/${jobId}`);
-    theJob.update(job).then(() => { this.router.navigate(["/jobs", jobId]) });
+    theJob.update(job).then(() => { this.router.navigate(["/jobs", jobId, job.url]) });
+  }
+
+  removeJob(jobId: string): void {
+    let theJob = this.af.database.object(`jobs/${jobId}`);
+    theJob.remove();
   }
 
   uploadFile(file: any) {

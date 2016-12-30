@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {Ng2SimplePageScrollModule} from 'ng2-simple-page-scroll';
 import { AppComponent } from './app.component';
 import { NavbarJobComponent } from './jobs/shared/navbar-job.component';
 import { JobsListComponent } from './jobs/jobs-list/jobs-list.component';
 import { JobItemComponent } from './jobs/job-item/job-item.component';
 import { JobDetailComponent } from './jobs/job-detail/job-detail.component';
+import {Ng2SimplePageScrollModule} from 'ng2-simple-page-scroll';
 
 import { routing } from './app.routing';
 import { JobsComponent } from './jobs/jobs.component';
@@ -29,6 +29,7 @@ import { AuthService } from "./shared/services/auth.service";
 import { AuthGuard } from "./shared/services/auth.guard";
 import { LoginGuard } from "./shared/services/login.guard";
 import { EditJobComponent } from './admin/edit-job/edit-job.component';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { EditJobComponent } from './admin/edit-job/edit-job.component';
     ReactiveFormsModule,
     routing,
     AngularFireModule.initializeApp(firebaseConfig, authConfig),
+    CKEditorModule,
     Ng2SimplePageScrollModule.forRoot()
   ],
   providers: [JobService, AuthService, AuthGuard, LoginGuard],

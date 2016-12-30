@@ -17,4 +17,7 @@ export class NewJobComponent implements OnInit {
     this.jobService.createNewJob(form.form.value);
   }
 
+  onReset(form) {
+    form.form.reset();
+  }
 }

@@ -23,4 +23,14 @@ export class JobDetailComponent implements OnInit {
     this.job$ = this.jobService.findJobById(this.jobId);
   }
 
+  getJobType(jobType: string) {
+    switch(jobType) {
+      case "fulltime":
+        return "Full-time";
+      case "parttime":
+        return "Part-time";
+      case "intern":
+        return "Thực tập";
+    }
+  }
 }

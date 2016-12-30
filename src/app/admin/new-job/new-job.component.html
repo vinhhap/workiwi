@@ -15,7 +15,7 @@
           <jb-job-form-admin #form></jb-job-form-admin>
         </div>
         <button type="submit" class="btn btn-primary" (click)="onSave(form)" [disabled]="!form.valid">Lưu công việc</button>
-        <button type="reset" class="btn btn-danger">Reset form</button>
+        <button type="reset" class="btn btn-danger" (click)="onReset(form)">Reset form</button>
       </div>
     </div>
   </div>

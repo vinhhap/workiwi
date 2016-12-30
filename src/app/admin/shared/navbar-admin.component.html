@@ -34,14 +34,14 @@
                         <a [routerLink]="['/admin']"><i class="fa fa-th-list"></i> Danh sách job<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="panels-wells.html">Full-time</a>
+                                <a [routerLink]="['/admin/jobs']" [queryParams]="{ type: 'fulltime' }">Full-time</a>
                             </li>
                             <li>
-                                <a href="buttons.html">Part-time</a>
+                                <a [routerLink]="['/admin/jobs']" [queryParams]="{ type: 'parttime' }">Part-time</a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a href="notifications.html">Thực tập</a>
-                            </li>
+                            </li>-->
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
