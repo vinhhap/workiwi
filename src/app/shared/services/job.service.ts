@@ -34,7 +34,7 @@ export class JobService {
 
   createNewJob(job: Job): void {
     let jobs = this.af.database.list("jobs");
-    jobs.push(job).then((item) => { this.router.navigate(["/jobs", item.key, item.url]) });
+    jobs.push(job).then((item) => { this.router.navigate(["/jobs", item.key, job.url]) });
   }
   
   editJob(job: Job, jobId: string): void {

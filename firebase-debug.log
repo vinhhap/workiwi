@@ -1,0 +1,31 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\nguye\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --debug
+[debug] CLI Version:  3.2.1
+[debug] Platform:     win32
+[debug] Node Version: v7.2.1
+[debug] Time:         Sat Dec 31 2016 05:22:36 GMT+0700 (SE Asia Standard Time)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/workiwi-efdf3 
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/workiwi-efdf3/tokens 
+[debug] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'workiwi-efdf3'...
+[info] 
+[info] i  deploying database, hosting
+[info] +  database: rules ready to deploy.
+[info] i  hosting: preparing dist directory for upload...
+[debug] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/workiwi-efdf3/uploads/-K_Goyx7J9HAV0lFixtq?fileCount=37&message= 
+[debug] <<< HTTP RESPONSE 200
+[info] +  hosting: dist folder uploaded successfully
+[info] +  hosting: 37 files uploaded successfully
+[info] i  starting release process (may take several minutes)...
+[debug] >>> HTTP REQUEST POST https://deploy.firebase.com/v1/projects/workiwi-efdf3/releases
+[debug] <<< HTTP RESPONSE 200
+[info] 
+[info] +  Deploy complete!
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/workiwi-efdf3/overview
+[info] Hosting URL: https://workiwi-efdf3.firebaseapp.com

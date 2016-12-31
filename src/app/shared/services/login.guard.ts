@@ -1,15 +1,15 @@
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from "@angular/router";
+import {CanActivateChild, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from "@angular/router";
 import {Observable} from "rxjs/Rx";
 import {Injectable} from "@angular/core";
 import {AuthService} from "./auth.service";
 
 @Injectable()
-export class LoginGuard implements CanActivate {
+export class LoginGuard implements CanActivateChild, CanActivate {
     
     constructor(private authService:AuthService,
                 private router:Router) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
         return this.authService.authInfo$
             .map(authInfo => !(authInfo.isLoggedIn()))
             .take(1)
@@ -18,5 +18,9 @@ export class LoginGuard implements CanActivate {
                     this.router.navigate(['/admin']);
                 }
             })
+    }
+
+    canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
+        return this.canActivate(route, state);
     }
 }
