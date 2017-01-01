@@ -14,7 +14,6 @@ export class JobService {
               private router: Router)
   {
     this.sdkStorage = fb.storage().ref();
-    this.sdkDb = fb.database().ref();
   }
 
   findJobs(query = {}): Observable<Job[]> {
