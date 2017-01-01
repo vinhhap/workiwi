@@ -1,3 +1,4 @@
+import { auth } from 'firebase';
 import {CanActivateChild, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from "@angular/router";
 import {Observable} from "rxjs/Rx";
 import {Injectable} from "@angular/core";
@@ -10,8 +11,8 @@ export class AuthGuard implements CanActivate, CanActivateChild  {
                 private router:Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
-        return this.authService.authInfo$
-            .map(authInfo => authInfo.isLoggedIn())
+        return this.authService.isLoggedIn()
+            .map(auth => !!auth)
             .take(1)
             .do(allowed => {
                 if(!allowed) {

@@ -1,6 +1,6 @@
+import { auth } from 'firebase';
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../shared/services/auth.service";
-import {AuthInfo} from "../../shared/services/auth-info";
 
 @Component({
   selector: 'jb-navbar-admin',
@@ -9,12 +9,12 @@ import {AuthInfo} from "../../shared/services/auth-info";
 })
 export class NavbarAdminComponent implements OnInit {
   
-  authInfo: AuthInfo;
+  public loggedIn: boolean;
 
   constructor(private authService:AuthService) { }
 
   ngOnInit() {
-    this.authService.authInfo$.subscribe(authInfo => this.authInfo = authInfo);
+    this.authService.isLoggedIn().subscribe(auth => this.loggedIn = !!auth);
   }
 
   onLogout() {

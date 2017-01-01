@@ -33,18 +33,4 @@ export class SessionsComponent implements OnInit {
             () => this.router.navigate(['/admin'])
         );
   }
-
-  // onLoginGoogle() {
-  //   this.authService.loginGoogle()
-  //       .subscribe(
-  //           () => this.router.navigate(['/admin'])
-  //       );
-  // }
-
-  // onLoginFacebook() {
-  //   this.authService.loginFacebook()
-  //       .subscribe(
-  //           () => this.router.navigate(['/admin'],)
-  //       );
-  // }
 }
