@@ -11,6 +11,7 @@ import { AuthService } from "../shared/services/auth.service";
 export class SessionsComponent implements OnInit {
 
   public loginForm: FormGroup;
+  public errorLogin: boolean = false;
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
@@ -30,7 +31,8 @@ export class SessionsComponent implements OnInit {
 
     this.authService.loginEmail(formValue.email, formValue.password)
         .subscribe(
-            () => this.router.navigate(['/admin'])
+            () => this.router.navigate(['/admin']),
+            err => this.errorLogin = !!err
         );
   }
 }
