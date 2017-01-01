@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { JobService } from "../../shared/services/job.service";
 import { Job } from "../../shared/services/job";
-import { Observable } from "Rxjs/rx";
 
 @Component({
   selector: 'jb-edit-job',
   templateUrl: './edit-job.component.html',
   styleUrls: ['./edit-job.component.less']
 })
-export class EditJobComponent implements OnInit {
+export class EditJobComponent implements OnInit, OnDestroy {
 
-  public job$: Observable<Job>;
+  public job: Job;
   private jobId: string;
+  private sub: Subscription;
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute
@@ -22,10 +23,16 @@ export class EditJobComponent implements OnInit {
 
   ngOnInit() {
     this.jobId = this.route.snapshot.params["id"];
-    this.job$ = this.jobService.findJobById(this.jobId);
+    this.sub = this.jobService.findJobById(this.jobId).subscribe(data => {
+      this.job = data;
+    });
   }
 
   onSave(form) {
-    this.jobService.editJob(form.form.value, this.jobId);
+    this.jobService.editJob(form.form.value, this.jobId, this.job);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

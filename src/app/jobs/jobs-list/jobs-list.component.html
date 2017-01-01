@@ -1,8 +1,8 @@
 <div class="container-fluid timeline">
     <div class="row">
-        <jb-job-item *ngFor="let job of (jobs$ | async)" [job]="job"></jb-job-item>
+        <jb-job-item *ngFor="let job of jobs" [job]="job"></jb-job-item>
     </div>
-    <!--<div class="load_more">
-        <button class="button">Load More</button>
-    </div>-->
+    <div class="load_more" *ngIf="jobs && isMore">
+        <button class="button" (click)="onLoadMore()">Tải thêm</button>
+    </div>
 </div>

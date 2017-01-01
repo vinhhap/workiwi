@@ -4,11 +4,9 @@ import {
   OnInit,
   Input,
   OnChanges,
-  SimpleChanges,
-  OnDestroy
+  SimpleChanges
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Subscription } from "Rxjs/rx";
 import { JobService } from "../../shared/services/job.service";
 
 @Component({
@@ -16,12 +14,12 @@ import { JobService } from "../../shared/services/job.service";
   templateUrl: './job-form-admin.component.html',
   styleUrls: ['./job-form-admin.component.less']
 })
-export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
+export class JobFormAdminComponent implements OnInit, OnChanges {
   
   @Input() initialValue: any;
-  private initialSubscription: Subscription;
   form: FormGroup;
   ckeditorContent:any;
+  private job: Job;
 
   constructor(private fb: FormBuilder, private jobService: JobService) {
     this.form = fb.group({
@@ -47,16 +45,10 @@ export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes["initialValue"]) {
-      this.initialSubscription = changes["initialValue"].currentValue.subscribe(data => {
-        this.form.patchValue(data);
-      });
-      
-    }
-  }
-
-  ngOnDestroy() {
-    if(this.initialSubscription) {
-      this.initialSubscription.unsubscribe();
+      this.job = changes["initialValue"].currentValue;
+      if(this.job) {
+        this.form.patchValue(this.job);
+      }
     }
   }
 

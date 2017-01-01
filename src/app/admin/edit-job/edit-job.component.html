@@ -12,7 +12,7 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          <jb-job-form-admin [initialValue]="job$" #form></jb-job-form-admin>
+          <jb-job-form-admin [initialValue]="job" #form></jb-job-form-admin>
         </div>
         <button type="submit" class="btn btn-primary" (click)="onSave(form)" [disabled]="!form.valid">Lưu công việc</button>
         <button type="reset" class="btn btn-danger">Reset form</button>

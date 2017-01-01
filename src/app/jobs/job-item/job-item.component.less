@@ -20,6 +20,8 @@
     position: relative;
     z-index: 1;
     display: table;
+    display: flex;
+    align-items: center;     
 }
 a {
     text-decoration: none;
@@ -41,7 +43,7 @@ img, .info, .job_type {
 }
 .info {
     line-height: 1.5;
-    width: 640px;
+    width: 600px;
     padding-left: 25px;
     .job_title {
         font-weight: 700;
@@ -73,7 +75,7 @@ img, .info, .job_type {
         border-radius: 100%;
         position: absolute;
         left: -20px;
-        top: 28px;
+        margin-top: 2px;
     }
 }
 .fulltime {
@@ -88,7 +90,7 @@ img, .info, .job_type {
         background: @highlight_2;
     }
 }
-.intern {
+.parttime {
     color: @highlight_3;
     &:before {
         background: @highlight_3;
