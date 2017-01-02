@@ -10,7 +10,6 @@ import { JobsListAdminComponent } from './jobs-list-admin/jobs-list-admin.compon
 import { NavbarAdminComponent } from './shared/navbar-admin.component';
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
-import { Angulartics2Module } from 'angulartics2';
 
 @NgModule({
     declarations: [
@@ -26,8 +25,7 @@ import { Angulartics2Module } from 'angulartics2';
         FormsModule,
         ReactiveFormsModule,
         CKEditorModule,
-        adminRouting,
-        Angulartics2Module.forChild()
+        adminRouting
     ],
     providers: [
         AuthGuard

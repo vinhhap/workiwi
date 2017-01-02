@@ -1,5 +1,5 @@
+import { SeoService } from './../../shared/services/seo.service';
 import { Subscription, Observable } from 'rxjs/Rx';
-import { MetaService } from 'ng2-meta';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Job } from "../../shared/services/job";
@@ -18,7 +18,7 @@ export class JobDetailComponent implements OnInit {
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute,
-              private metaService: MetaService
+              private seoService: SeoService
   ) { }
 
   ngOnInit() {
@@ -26,10 +26,9 @@ export class JobDetailComponent implements OnInit {
     this.sub = this.jobService.findJobById(this.jobId).subscribe(job => {
       this.job = job;
       if(this.job) {
-        this.metaService.setTitle(`${this.job.jobTitle} | ${this.job.jobType} | Workiwi`);
-        this.metaService.setTag('og:image', this.job.logo);
-        this.metaService.setTag('keywords', `${this.job.jobType}, ${this.job.jobTitle}, ${this.job.companyName}`);
-        this.metaService.setTag('og:description', this.job.description);
+        this.seoService.setTitle(`${this.job.jobTitle} | Workiwi | Trang tuyển dụng việc làm cho Start Up`);
+        this.seoService.setMetaDescription('${this.job.jobTitle}, ${this.job.companyName}');
+        this.seoService.setMetaRobots('Index, Follow');
       }
     });
   }

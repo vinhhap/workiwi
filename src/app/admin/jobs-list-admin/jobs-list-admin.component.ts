@@ -1,3 +1,4 @@
+import { SeoService } from './../../shared/services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Job } from "../../shared/services/job";
@@ -22,7 +23,13 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
   public jobs: Job[];
   public isMore: boolean = true;
 
-  constructor(private jobService: JobService, private route: ActivatedRoute) { }
+  constructor(private jobService: JobService,
+              private route: ActivatedRoute,
+              private seoService: SeoService) {
+    seoService.setTitle('Quản lý | Workiwi | Trang tuyển dụng việc làm cho Start Up');
+    seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
+    seoService.setMetaRobots('None');
+  }
 
   ngOnInit() {
     this.sub1 = this.route.queryParams.subscribe(params => {

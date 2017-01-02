@@ -1,3 +1,4 @@
+import { SeoService } from './../shared/services/seo.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -15,12 +16,16 @@ export class SessionsComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
-              private router: Router
+              private router: Router,
+              private seoService: SeoService
   ) {
     this.loginForm = fb.group({
       email: ['',Validators.required],
       password: ['',Validators.required]
     });
+    seoService.setTitle('Đăng nhập | Workiwi | Trang tuyển dụng việc làm cho Start Up');
+    seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
+    seoService.setMetaRobots('None');
   }
 
   ngOnInit() {

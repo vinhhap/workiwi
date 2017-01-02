@@ -1,5 +1,5 @@
+import { SeoService } from './shared/services/seo.service';
 import { Component } from '@angular/core';
-import { MetaService } from 'ng2-meta';
 
 @Component({
   selector: 'jb-root',
@@ -7,5 +7,9 @@ import { MetaService } from 'ng2-meta';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  constructor(private metaService: MetaService) {}
+  constructor(private seoService: SeoService) {
+    seoService.setTitle('Workiwi | Trang tuyển dụng việc làm cho Start Up');
+    seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
+    seoService.setMetaRobots('Index, Follow');
+  }
 }

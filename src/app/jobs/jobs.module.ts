@@ -7,7 +7,6 @@ import { JobsComponent } from './jobs.component';
 import { JobItemComponent } from './job-item/job-item.component';
 import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { NavbarJobComponent } from './shared/navbar-job.component';
-import { Angulartics2Module } from 'angulartics2';
 
 @NgModule({
     declarations: [
@@ -20,8 +19,7 @@ import { Angulartics2Module } from 'angulartics2';
     imports: [
         CommonModule,
         Ng2SimplePageScrollModule.forRoot(),
-        jobsRouting,
-        Angulartics2Module.forChild()
+        jobsRouting
     ]
 })
 export class JobsModule { }

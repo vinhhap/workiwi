@@ -1,4 +1,4 @@
-import { MetaService } from 'ng2-meta';
+import { SeoService } from './../../shared/services/seo.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from "Rxjs/rx";
 import { Job } from "../../shared/services/job";
@@ -22,7 +22,13 @@ export class JobsListComponent implements OnInit, OnDestroy {
   private type: string;
   private perPage: number = 10;
 
-  constructor(private jobService: JobService, private route: ActivatedRoute, private metaService: MetaService) { }
+  constructor(private jobService: JobService,
+              private route: ActivatedRoute,
+              private seoService: SeoService) {
+    seoService.setTitle('Workiwi | Trang tuyển dụng việc làm cho Start Up');
+    seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
+    seoService.setMetaRobots('Index, Follow');
+  }
 
   ngOnInit() {
     this.sub1 = this.route.queryParams.subscribe(params => {
@@ -33,7 +39,6 @@ export class JobsListComponent implements OnInit, OnDestroy {
           this.subFirstPage(jobs);
         });
       } else {
-        this.metaService.setTitle(`Workiwi | ${this.type}`);
         this.sub2 = this.jobService.loadFirstJobsTypePage(this.perPage, this.type).subscribe(jobs => {
           this.subFirstPage(jobs);
         });
