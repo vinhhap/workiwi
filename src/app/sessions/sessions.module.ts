@@ -4,6 +4,7 @@ import { sessionsRouting } from './sessions.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionsComponent } from './sessions.component';
 import { NgModule } from '@angular/core';
+import { Angulartics2Module } from 'angulartics2';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { NgModule } from '@angular/core';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        sessionsRouting
+        sessionsRouting,
+        Angulartics2Module.forChild()
     ],
     providers: [
         LoginGuard

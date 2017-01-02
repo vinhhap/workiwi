@@ -19,7 +19,7 @@ export class JobsListComponent implements OnInit, OnDestroy {
   private sub2: Subscription;
   private sub3: Subscription;
   private type: string;
-  private perPage: number = 3;
+  private perPage: number = 10;
 
   constructor(private jobService: JobService, private route: ActivatedRoute) { }
 
@@ -79,6 +79,9 @@ export class JobsListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();
-    this.sub3.unsubscribe();
+    if(this.sub3) {
+      this.sub3.unsubscribe();
+    }
+    
   }
 }

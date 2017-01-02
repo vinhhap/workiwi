@@ -14,6 +14,7 @@ export class JobService {
               private router: Router)
   {
     this.sdkStorage = fb.storage().ref();
+    this.sdkDb = fb.database();
   }
 
   findJobs(query = {}): Observable<Job[]> {
@@ -99,6 +100,30 @@ export class JobService {
     let jobType = this.af.database.object(`types/${type}/${jobId}`);
     theJob.remove();
     jobType.remove();
+  }
+
+  totalJobsNum() {
+    const subject = new Subject();
+
+    this.sdkDb.ref("jobs")
+              .once("value")
+              .then(snapshot => {
+                subject.next(snapshot.numChildren());
+                subject.complete();
+              });
+    return subject.asObservable();
+  }
+
+  totalJobsNumByType(type: string) {
+    const subject = new Subject();
+
+    this.sdkDb.ref(`types/${type}`)
+              .once("value")
+              .then(snapshot => {
+                subject.next(snapshot.numChildren());
+                subject.complete();
+              });
+    return subject.asObservable();
   }
 
   uploadFile(file: any) {

@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { Ng2SimplePageScrollModule } from 'ng2-simple-page-scroll';
+import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 
 import { routing } from './app.routing';
 
@@ -31,7 +32,8 @@ import { AuthService } from "./shared/services/auth.service";
     AngularFireModule.initializeApp(firebaseConfig, authConfig),
     JobsModule,
     SessionsModule,
-    AdminModule
+    AdminModule,
+    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics])
   ],
   providers: [JobService, AuthService],
   bootstrap: [AppComponent]
