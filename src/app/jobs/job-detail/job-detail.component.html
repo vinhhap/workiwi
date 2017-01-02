@@ -3,42 +3,42 @@
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="job_detail_title">{{(job$ | async)?.jobTitle}}</h3>
-                    <h4 class="job_detail_location"><i class="fa fa-building" aria-hidden="true"></i> tại {{(job$ | async)?.companyName}}, {{(job$ | async)?.city}}</h4>
+                    <h3 class="job_detail_title">{{job?.jobTitle}}</h3>
+                    <h4 class="job_detail_location"><i class="fa fa-building" aria-hidden="true"></i> tại {{job?.companyName}}, {{job?.city}}</h4>
                     <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_lg hidden-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ứng tuyển</a>
                     <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_sm visible-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ứng tuyển</a>
                     <table class="job_detail_brief">
                         <tbody>
                             <tr>
                                 <td>LOẠI CÔNG VIỆC</td>
-                                <td>{{getJobType((job$ | async)?.jobType)}}</td>
+                                <td>{{getJobType(job?.jobType)}}</td>
                             </tr>
                             <tr>
                                 <td>DEADLINE</td>
-                                <td>{{(job$ | async)?.deadline}}</td>
+                                <td>{{job?.deadline}}</td>
                             </tr>
                             <tr>
                                 <td>MỨC LƯƠNG</td>
-                                <td>{{(job$ | async)?.wage}}</td>
+                                <td>{{job?.wage}}</td>
                             </tr>
                             <tr>
                                 <td>ĐỊA ĐIỂM LÀM VIỆC</td>
-                                <td>{{(job$ | async)?.address}}</td>
+                                <td>{{job?.address}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="panel-body">
-                    <div [innerHTML]="(job$ | async)?.description"></div>
+                    <div [innerHTML]="job?.description"></div>
                     <h3 id="apply">Cách thức ứng tuyển</h3>
-                    <div [innerHTML]="(job$ | async)?.applyMethod"></div>
+                    <div [innerHTML]="job?.applyMethod"></div>
                 </div>
 
-                <div class="panel-footer" *ngIf="(job$ | async)?.companyName || (job$ | async)?.companyDescription">
+                <div class="panel-footer" *ngIf="job?.companyName || job?.companyDescription">
                     <h3>Giới thiệu về công ty</h3>
                     <p class="job_detail_logo">
-                        <img [src]="(job$ | async)?.logo" [alt]="(job$ | async)?.companyName">
-                        <span [innerHTML]="(job$ | async)?.companyDescription"></span>
+                        <img [src]="job?.logo" [alt]="job?.companyName">
+                        <span [innerHTML]="job?.companyDescription"></span>
                     </p>
                 </div>
             </div>
