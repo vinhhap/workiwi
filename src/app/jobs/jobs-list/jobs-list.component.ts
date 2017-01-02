@@ -1,3 +1,4 @@
+import { MetaService } from 'ng2-meta';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from "Rxjs/rx";
 import { Job } from "../../shared/services/job";
@@ -21,7 +22,7 @@ export class JobsListComponent implements OnInit, OnDestroy {
   private type: string;
   private perPage: number = 10;
 
-  constructor(private jobService: JobService, private route: ActivatedRoute) { }
+  constructor(private jobService: JobService, private route: ActivatedRoute, private metaService: MetaService) { }
 
   ngOnInit() {
     this.sub1 = this.route.queryParams.subscribe(params => {
@@ -32,6 +33,7 @@ export class JobsListComponent implements OnInit, OnDestroy {
           this.subFirstPage(jobs);
         });
       } else {
+        this.metaService.setTitle(`Workiwi | ${this.type}`);
         this.sub2 = this.jobService.loadFirstJobsTypePage(this.perPage, this.type).subscribe(jobs => {
           this.subFirstPage(jobs);
         });
