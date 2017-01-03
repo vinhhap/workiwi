@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { SearchService } from './../../shared/services/search.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { AuthService } from "../../shared/services/auth.service";
 
 @Component({
@@ -22,7 +22,8 @@ export class NavbarAdminComponent implements OnInit, OnDestroy {
   constructor(private authService:AuthService,
               private fb: FormBuilder,
               private searchService: SearchService,
-              private router: Router) { }
+              private router: Router,
+              private zone: NgZone) { }
 
   ngOnInit() {
     this.authService.isLoggedIn().subscribe(auth => this.loggedIn = !!auth);
@@ -35,11 +36,14 @@ export class NavbarAdminComponent implements OnInit, OnDestroy {
 
   onSearch() {
     this.sub = this.searchService.doSearch(this.searchForm.value).subscribe(value => {
-      if(value.hasOwnProperty("hits")) {
-        this.results = value["hits"];
-        this.totalResults = value["total"];
-        console.log(value);
-      }
+      this.zone.run(() => {
+          if(value.hasOwnProperty("hits")) {
+            this.results = value["hits"];
+            this.totalResults = value["total"];
+            console.log(this.results);
+          }
+      });
+      
     });
   }
 
