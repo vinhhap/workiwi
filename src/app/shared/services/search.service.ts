@@ -15,8 +15,6 @@ export class SearchService {
 
         let ref = this.sdkDb.child("search");
         let key = ref.child("request").push(query).key;
-
-        console.log("search", key, query);
         
         ref.child(`response/${key}`).on("value", value => {
             if(value.exists()) {

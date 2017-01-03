@@ -39,13 +39,11 @@ export class NavbarAdminComponent implements OnInit, OnDestroy {
     this.totalResults = 0;
     this.sub = this.searchService.doSearch(this.searchForm.value).subscribe(value => {
       this.zone.run(() => {
-          if(value.hasOwnProperty("hits")) {
-            this.results = value["hits"];
-            this.totalResults = value["total"];
-            console.log(this.results);
-          }
+        if(value.hasOwnProperty("hits")) {
+          this.results = value["hits"];
+          this.totalResults = value["total"];
+        }
       });
-      
     });
   }
 
@@ -54,7 +52,9 @@ export class NavbarAdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    if(this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 }
