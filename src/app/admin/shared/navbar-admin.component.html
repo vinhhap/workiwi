@@ -1,54 +1,89 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" [routerLink]="['/admin']">Workiwi Admin</a>
-        </div>
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" [routerLink]="['/admin']">Workiwi Admin</a>
+    </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <ul class="nav navbar-top-links navbar-right">
-            <li><a [routerLink]="['']"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
-            <li *ngIf="loggedIn"><a (click)="onLogout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>
-        </ul>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <ul class="nav navbar-top-links navbar-right">
+        <li><a [routerLink]="['']"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
+        <li *ngIf="loggedIn"><a (click)="onLogout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>
+    </ul>
 
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse collapse">
-                <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse collapse">
+            <ul class="nav" id="side-menu">
+                <li class="sidebar-search">
+                    <form [formGroup]="searchForm">
                         <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
+                            <input type="text" class="form-control" placeholder="Từ khóa" formControlName="q">
                             <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default" type="button" (click)="onSearch()" [disabled]="!searchForm.valid" data-toggle="modal" data-target="#myModal">
                                 <i class="fa fa-search"></i>
                             </button>
-                        </span>
+                            </span>
                         </div>
-                        <!-- /input-group -->
-                    </li>
-                    <li>
-                        <a [routerLink]="['/admin']"><i class="fa fa-th-list"></i> Danh sách job</a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a [routerLink]="['/admin/jobs']" [queryParams]="{ type: 'fulltime' }">Full-time</a>
-                            </li>
-                            <li>
-                                <a [routerLink]="['/admin/jobs']" [queryParams]="{ type: 'parttime' }">Part-time</a>
-                            </li>
-                            <!--<li>
-                                <a href="notifications.html">Thực tập</a>
-                            </li>-->
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a [routerLink]="['./new']"><i class="fa fa-edit fa-fw"></i> Thêm viêc mới</a>
-                    </li>
-                </ul>
-            </div>
+                    </form>
+                    <!-- /input-group -->
+                </li>
+                <li>
+                    <a [routerLink]="['/admin']"><i class="fa fa-th-list"></i> Danh sách job</a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a [routerLink]="['/admin/jobs']" [queryParams]="{ type: 'fulltime' }">Full-time</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/admin/jobs']" [queryParams]="{ type: 'parttime' }">Part-time</a>
+                        </li>
+                        <!--<li>
+                            <a href="notifications.html">Thực tập</a>
+                        </li>-->
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a [routerLink]="['./new']"><i class="fa fa-edit fa-fw"></i> Thêm viêc mới</a>
+                </li>
+                <li *ngIf="results.length > 0 && totalResults > 0">
+                    <a data-toggle="modal" data-target="#myModal"><span class="badge">{{totalResults}}</span> Kết quả tìm kiếm</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Có {{totalResults}} kết quả</h4>
+      </div>
+      <div class="modal-body">
+        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên công việc</th>
+                    <th>Công ty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="even gradeC" *ngFor="let job of results">
+                    <td><a [routerLink]="['/admin/edit', job._id, job._source.url]">{{job._id}}</a></td>
+                    <td>{{job._source.jobTitle}}</td>
+                    <td>{{job._source.companyName}}</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
