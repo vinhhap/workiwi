@@ -35,6 +35,8 @@ export class NavbarAdminComponent implements OnInit, OnDestroy {
   }
 
   onSearch() {
+    this.results = [];
+    this.totalResults = 0;
     this.sub = this.searchService.doSearch(this.searchForm.value).subscribe(value => {
       this.zone.run(() => {
           if(value.hasOwnProperty("hits")) {

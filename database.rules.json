@@ -1,11 +1,6 @@
 {
   "rules": {
-    ".read": "true",
-    ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'",
-    "jobs": {
-      ".indexOn": [
-        "jobType"
-      ]
-    }
+    ".read": "auth != null",
+    ".write": "auth != null"
   }
 }

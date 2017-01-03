@@ -22,6 +22,7 @@ export class SearchService {
             if(value.exists()) {
                 subject.next(value.val().hits);
                 subject.complete();
+                value.ref.remove();
             }
         })
 
