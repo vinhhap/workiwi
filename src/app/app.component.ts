@@ -13,12 +13,12 @@ export class AppComponent {
     seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
     seoService.setMetaRobots('Index, Follow');
     router.events.distinctUntilChanged((previous: any, current: any) => {
-                if(current instanceof NavigationEnd) {
-                    return previous.url === current.url;
-                }
-                return true;
-            }).subscribe((x: any) => {
-                ga('send', 'pageview', x.url);
-            });
+        if(current instanceof NavigationEnd) {
+            return previous.url === current.url;
+        }
+        return true;
+    }).subscribe((x: any) => {
+        ga('send', 'pageview', x.url);
+    });
   }
 }
