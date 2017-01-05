@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Job } from "../../shared/services/job";
 import { JobService } from "../../shared/services/job.service";
+import { ShareButton, ShareProvider } from "ng2-sharebuttons";
 
 @Component({
   selector: 'jb-job-detail',
@@ -15,6 +16,12 @@ export class JobDetailComponent implements OnInit {
   public job: Job;
   private jobId: string;
   private sub: Subscription;
+  public facebookButton;
+  public googlePlusButton;
+  public linkedButton;
+  public twitterButton;
+  public description = "";
+  public image = "";
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute,
@@ -22,6 +29,26 @@ export class JobDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.facebookButton = new ShareButton(
+      ShareProvider.FACEBOOK,
+      "<img src='assets/images/facebook.svg'>  ",
+      "facebook"
+    );
+    this.googlePlusButton = new ShareButton(
+      ShareProvider.GOOGLEPLUS,
+      "<img src='assets/images/google-plus.svg'>  ",
+      "google_plus"
+    );
+    this.linkedButton = new ShareButton(
+      ShareProvider.LINKEDIN,
+      "<img src='assets/images/linkedin.svg'>  ",
+      "linked_in"
+    );
+    this.twitterButton = new ShareButton(
+      ShareProvider.TWITTER,
+      "<img src='assets/images/twitter.svg'>  ",
+      "twitter"
+    );
     this.jobId = this.route.snapshot.params["id"];
     this.sub = this.jobService.findJobById(this.jobId).subscribe(job => {
       this.job = job;
@@ -29,6 +56,8 @@ export class JobDetailComponent implements OnInit {
         this.seoService.setTitle(`${this.job.jobTitle} | Workiwi | Trang tuyển dụng việc làm cho Start Up`);
         this.seoService.setMetaDescription('${this.job.jobTitle}, ${this.job.companyName}');
         this.seoService.setMetaRobots('Index, Follow');
+        this.description = '${this.job.jobTitle}, ${this.job.companyName}';
+        this.image = this.job.logo;
       }
     });
   }

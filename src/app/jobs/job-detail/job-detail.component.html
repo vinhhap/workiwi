@@ -32,6 +32,26 @@
                     <div [innerHTML]="job?.description"></div>
                     <h3 id="apply">Cách thức ứng tuyển</h3>
                     <div [innerHTML]="job?.applyMethod"></div>
+                    <hr>
+                    <div class="share-button-area text-center">
+                        <h3>Chia sẻ công việc này trên mạng xã hội</h3>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <share-button [button]='facebookButton' [description]="description" [image]="image"></share-button>
+                            </div>
+                            <div class="col-sm-3">
+                                <share-button [button]='googlePlusButton' [description]="description" [image]="image"></share-button>
+                            </div>
+                            <div class="col-sm-3">
+                                <share-button [button]='linkedButton' [description]="description" [image]="image"></share-button>
+                            </div>
+                            <div class="col-sm-3">
+                                <share-button [button]='twitterButton' [description]="description" [image]="image"></share-button>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
                 </div>
 
                 <div class="panel-footer" *ngIf="job?.companyName || job?.companyDescription">

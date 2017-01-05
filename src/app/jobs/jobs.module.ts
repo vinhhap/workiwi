@@ -7,6 +7,7 @@ import { JobsComponent } from './jobs.component';
 import { JobItemComponent } from './job-item/job-item.component';
 import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { NavbarJobComponent } from './shared/navbar-job.component';
+import { ShareButtonsModule } from "ng2-sharebuttons";
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { NavbarJobComponent } from './shared/navbar-job.component';
     imports: [
         CommonModule,
         Ng2SimplePageScrollModule.forRoot(),
-        jobsRouting
+        jobsRouting,
+        ShareButtonsModule
     ]
 })
 export class JobsModule { }
