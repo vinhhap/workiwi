@@ -21,6 +21,7 @@ export class JobDetailComponent implements OnInit {
   public linkedButton;
   public twitterButton;
   public description = "";
+  public title = ""
   public image = "";
 
   constructor(private jobService: JobService,
@@ -56,7 +57,8 @@ export class JobDetailComponent implements OnInit {
         this.seoService.setTitle(`${this.job.jobTitle} | Workiwi | Trang tuyển dụng việc làm cho Start Up`);
         this.seoService.setMetaDescription('${this.job.jobTitle}, ${this.job.companyName}');
         this.seoService.setMetaRobots('Index, Follow');
-        this.description = '${this.job.jobTitle}, ${this.job.companyName}';
+        this.description = `${this.job.jobTitle} tại ${this.job.city}. Click vào link để xem chi tiết`;
+        this.title = `${this.job.jobTitle} | Workiwi | Trang tuyển dụng việc làm cho Start Up`;
         this.image = this.job.logo;
       }
     });
