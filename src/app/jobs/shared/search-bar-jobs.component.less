@@ -1,0 +1,42 @@
+@import "../../shared/less/variables.less";
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+    background-image: url(assets/images/search.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+    .search-box {
+        border: none;
+        height: 60px;
+        border-radius: 2em !important;
+        font-size: 1.5rem;
+        font-weight: 400;
+        letter-spacing: 1px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .input-group-btn {
+        padding-left: 20px;
+        .btn-default {
+            padding-left: 20px;
+            padding-right: 20px;
+            border: none;
+            height: 60px;
+            border-radius: 2em;
+            background: @light-pink;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            &:hover, &:active {
+                background: darken(@light-pink, 20);
+            }
+        }
+    }
+    .over {
+        align-self: center;
+    }
+}

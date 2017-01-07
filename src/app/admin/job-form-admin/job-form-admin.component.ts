@@ -25,7 +25,7 @@ export class JobFormAdminComponent implements OnInit, OnChanges {
     this.form = fb.group({
       jobTitle: ["", Validators.required],
       companyName: ["", Validators.required],
-      city: ["", Validators.required],
+      city: ["Hà Nội", Validators.required],
       jobType: ["fulltime", Validators.required],
       wage: ["", Validators.required],
       address: ["", Validators.required],

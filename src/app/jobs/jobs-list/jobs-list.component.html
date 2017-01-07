@@ -1,8 +1,43 @@
-<div class="container-fluid timeline">
+<jb-search-bar-jobs></jb-search-bar-jobs>
+
+<!--<div class="container-fluid timeline">
     <div class="row">
         <jb-job-item *ngFor="let job of jobs" [job]="job"></jb-job-item>
     </div>
     <div class="load_more" *ngIf="jobs && isMore">
         <button class="button" (click)="onLoadMore()">Tải thêm</button>
+    </div>
+</div>-->
+
+
+<div class="container jobs-list">
+    <div class="row">
+        <div class="type-search hidden-sm hidden-xs" *ngIf="!isSearch">
+            <div class="col-sm-8">
+                <a [routerLink]="['/jobs']" [class.active]="!type && !city && !query">Tất cả</a>
+                <a [routerLink]="['/jobs']" [queryParams]="{ type: 'fulltime' }" [class.active]="type === 'fulltime'">Full-time</a>
+                <a [routerLink]="['/jobs']" [queryParams]="{ type: 'parttime' }" [class.active]="type === 'parttime'">Part-time</a>
+                <a [routerLink]="['/jobs']" [queryParams]="{ type: 'intern' }" [class.active]="type === 'intern'">Thực tập</a>
+            </div>
+            <div class="col-sm-4 text-right">
+                <a [routerLink]="['/jobs']" [queryParams]="{ city: 'Hà Nội' }" [class.active]="city === 'Hà Nội'">Hà Nội</a>
+                <a [routerLink]="['/jobs']" [queryParams]="{ city: 'Hồ Chí Minh' }" [class.active]="city === 'Hồ Chí Minh'">HCM</a>
+                <a [routerLink]="['/jobs']" [queryParams]="{ city: 'Đà Nẵng' }" [class.active]="city === 'Đà Nẵng'">Đà Nẵng</a>
+            </div>
+        </div>
+
+        <div class="text-center" *ngIf="isSearch" style="margin-bottom: 3em;">
+            <h3>Kết quả tìm kiếm: {{totalSearch}} kết quả</h3>
+        </div>
+
+        <div class="main-content">
+            <jb-job-item *ngFor="let job of jobs" [job]="job"></jb-job-item>
+        </div>
+    </div>
+    <div class="load_more" *ngIf="jobs && isMore">
+        <button class="button" (click)="onLoadMore()">Tải thêm</button>
+    </div>
+    <div class="load_more" *ngIf="jobs && !isMore && !isSearch">
+        <button class="button">Đã hết danh sách</button>
     </div>
 </div>

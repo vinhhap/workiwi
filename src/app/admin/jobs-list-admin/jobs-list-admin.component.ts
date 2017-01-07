@@ -87,9 +87,9 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
     }
   }
 
-  onRemove(key: string, type: string) {
+  onRemove(key: string, type: string, city: string) {
     if(confirm("Bạn muốn xóa công việc này?")) {
-      this.jobService.removeJob(key, type);
+      this.jobService.removeJob(key, type, city);
     }
   }
 

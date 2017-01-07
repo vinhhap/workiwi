@@ -1,3 +1,4 @@
+import { SearchService } from './../../shared/services/search.service';
 import { SeoService } from './../../shared/services/seo.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from "Rxjs/rx";
@@ -15,16 +16,21 @@ export class JobsListComponent implements OnInit, OnDestroy {
 
   public jobs: Job[];
   public isMore: boolean = true;
+  public isSearch: boolean = false;
+  public totalSearch: number = 0;
   private jobKey: string;
   private sub1: Subscription;
   private sub2: Subscription;
   private sub3: Subscription;
-  private type: string;
+  public type: string;
+  public city: string;
+  public query: string;
   private perPage: number = 10;
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute,
-              private seoService: SeoService) {
+              private seoService: SeoService,
+              private searchService: SearchService) {
     seoService.setTitle('Workiwi | Trang tuyển dụng việc làm cho Start Up');
     seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
     seoService.setMetaRobots('Index, Follow');
@@ -33,13 +39,52 @@ export class JobsListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub1 = this.route.queryParams.subscribe(params => {
       this.type = params["type"];
+      this.city = params["city"];
+      this.query = params["q"];
       this.isMore = true;
-      if(!this.type) {
-        this.sub2 = this.jobService.loadFirstJobsPage(this.perPage).subscribe(jobs => {
+      this.isSearch = false;
+
+      if(this.type) {
+        this.sub2 = this.jobService.loadFirstJobsTypePage(this.perPage, this.type).subscribe(jobs => {
           this.subFirstPage(jobs);
         });
+      } else if(this.city) {
+        this.sub2 = this.jobService.loadFirstJobsCityPage(this.perPage, this.city).subscribe(jobs => {
+          this.subFirstPage(jobs);
+        });
+      } else if(params["q"]) {
+        this.sub2= this.searchService.doSearch({
+          index: "firebase",
+          type: "job",
+          q: params["q"]
+        }).subscribe(jobs => {
+          this.isMore = false;
+          this.isSearch = true;
+          let results = [];
+          if(jobs) {
+            this.totalSearch = jobs["total"];
+            if(jobs["hits"] && jobs["hits"].length > 0) {
+               results = jobs["hits"].map(job => {
+                return {
+                  $key: job._id,
+                  jobTitle: job._source.jobTitle,
+                  city: job._source.city,
+                  companyName: job._source.companyName,
+                  url: job._source.url,
+                  logo: job._source.logo,
+                  jobType: job._source.jobType,
+                  deadline: job._source.deadline
+                }
+              });
+              this.jobs = results.slice().reverse();
+            } else {
+              this.jobs = [];
+            }
+           
+          }
+        });
       } else {
-        this.sub2 = this.jobService.loadFirstJobsTypePage(this.perPage, this.type).subscribe(jobs => {
+        this.sub2 = this.jobService.loadFirstJobsPage(this.perPage).subscribe(jobs => {
           this.subFirstPage(jobs);
         });
       }
@@ -47,18 +92,26 @@ export class JobsListComponent implements OnInit, OnDestroy {
   }
 
   onLoadMore() {
-    if(!this.type) {
-      this.sub3 = this.jobService.loadNextJobsPage(
-        this.jobKey,
-        this.perPage
-      ).subscribe(jobs => {
-        this.subLoadMore(jobs);
-      });
-    } else {
+    if(this.type) {
       this.sub3 = this.jobService.loadNextJobsTypePage(
         this.jobKey,
         this.perPage,
         this.type
+      ).subscribe(jobs => {
+        this.subLoadMore(jobs);
+      });
+    } else if(this.city) {
+      this.sub3 = this.jobService.loadNextJobsCityPage(
+        this.jobKey,
+        this.perPage,
+        this.city
+      ).subscribe(jobs => {
+        this.subLoadMore(jobs);
+      });
+    } else {
+      this.sub3 = this.jobService.loadNextJobsPage(
+        this.jobKey,
+        this.perPage
       ).subscribe(jobs => {
         this.subLoadMore(jobs);
       });
@@ -75,11 +128,16 @@ export class JobsListComponent implements OnInit, OnDestroy {
   }
 
   private subFirstPage(jobs) {
-    if(jobs) {
+    if(jobs.length > 0) {
+      this.isMore = true;
       this.jobs = jobs.slice().reverse();
       if(jobs[0]) {
         this.jobKey = jobs[0].$key;
       }
+    } else {
+      this.jobs = [];
+      
+      this.isMore = false;
     }
   }
 
@@ -89,6 +147,5 @@ export class JobsListComponent implements OnInit, OnDestroy {
     if(this.sub3) {
       this.sub3.unsubscribe();
     }
-    
   }
 }

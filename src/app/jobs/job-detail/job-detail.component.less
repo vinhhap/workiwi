@@ -1,6 +1,5 @@
 @import "../../shared/less/variables.less";
 .job_detail {
-    width: 100%;
     padding: 0;
     font-size: 1.2em;
     .panel-heading {
@@ -9,14 +8,13 @@
             font-weight: 700;
             font-size: 1.6em;
             margin-bottom: 0.5em;
-            max-width: 500px;
+            max-width: 900px;
         }
         .job_detail_location {
             font-weight: 500;
             font-size: 1.3em;
             margin-bottom: 0.8em;
-            max-width: 320px;
-            max-width: 500px;
+            max-width: 900px;
         }
         .job_detail_apply_lg {
             background: @logo;
@@ -79,6 +77,14 @@
                 max-width: 100px;
             }
         }
+    }
+}
+
+
+@media(max-width:767px) {
+    .row {
+        padding-left: 8px;
+        padding-right: 8px;
     }
 }
 

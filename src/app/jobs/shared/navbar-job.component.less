@@ -1,86 +1,164 @@
 @import "../../shared/less/variables.less";
 
-.main_header {
-    margin: 4em 0 3em 0;
+// .main_header {
+//     margin: 4em 0 3em 0;
+// }
+
+// .logo {
+//     a, a:hover, a:focus, a:active {
+//         text-decoration: none,
+//     }
+//     img {
+//         width: 75px;
+//         float: left;
+//     }
+//     h1 {
+//         float: left;
+//         margin-top: 0em;
+//         margin-left: 1em;
+//         text-transform: uppercase;
+//         font-size: 1.6em;
+//         padding-top: 1.1em;
+//         color: #371900;
+//         font-weight: 700;
+//         letter-spacing: 1px;
+//         span {
+//             font-weight: 400;
+//         }
+//     }
+// }
+
+// .main-nav {
+//     float: right;
+//     padding-top: 1.5em;
+//     a {
+//         color: #74718f;
+//         margin-left: 1.3em;
+//         text-decoration: none;
+//         letter-spacing: 1px;
+//         font-size: 1.1em;
+//     }
+//     .custom_btn {
+//         background: @highlight_1;
+//         color: white;
+//         border: @highlight_1;
+//         border-radius: 100em;
+//         &:hover {
+//             background: darken(@highlight_1, 10);
+//             border: darken(@highlight_1, 10);
+//         }
+//     }
+// }
+
+// @media only screen and (max-width: 800px) {
+//     .main_header {
+//         margin-top: 3em;
+//     }
+//     .logo {
+//             display: block;
+//             margin: 0 auto;
+//             text-align: center;
+//         img {
+//             float: none;
+//         }
+//         h1 {
+//             float: none;
+//             margin: 0;
+//             font-size: 1.4em;
+//         }
+//     }
+
+//     .main-nav {
+//         float: none;
+//         text-align: center;
+//         a {
+//             margin: 0 .5em;
+//         }
+//     }
+// }
+
+// @media only screen and (max-width: 451px) {
+//     .main-nav {
+//         .custom_btn {
+//             margin-top: 1em;
+//         }
+//     }
+// }
+.navbar-custom {
+    background: white;
+    border-radius: 0;
+    .navbar-nav {
+        li a {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: @text;
+            &:hover, &:active {
+                color: @light-red;
+            }
+        }
+    }
+    .navbar-toggle {
+        border-radius: 0;
+    }
 }
 
-.logo {
-    a, a:hover, a:focus, a:active {
-        text-decoration: none,
+@media screen and (min-width: 768px) {
+    .navbar-brand {
+        padding: 0px;
     }
-    img {
-        width: 75px;
-        float: left;
+
+    .navbar-brand img {
+        height: 100%;
+        padding: 15px;
+        width: auto;
     }
-    h1 {
-        float: left;
-        margin-top: 0em;
-        margin-left: 1em;
-        text-transform: uppercase;
-        font-size: 1.6em;
-        padding-top: 1.1em;
-        color: #371900;
-        font-weight: 700;
-        letter-spacing: 1px;
-        span {
-            font-weight: 400;
+
+    .custom-navbar .navbar-brand {
+        height: 80px;
+    }
+
+    .custom-navbar .nav >li >a {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .navbar-btn {
+        margin-top: 20px;
+        .btn {
+            padding: 10px 30px;
+            border-radius: 4rem;
+            background: @light-red;
+            color: white !important;
+            border: none;
+            &:hover, &:active {
+                background: darken(@light-red, 20)
+            }
         }
     }
 }
 
-.main-nav {
-    float: right;
-    padding-top: 1.5em;
-    a {
-        color: #74718f;
-        margin-left: 1.3em;
-        text-decoration: none;
-        letter-spacing: 1px;
-        font-size: 1.1em;
-    }
-    .custom_btn {
-        background: @highlight_1;
-        color: white;
-        border: @highlight_1;
-        border-radius: 100em;
-        &:hover {
-            background: darken(@highlight_1, 10);
-            border: darken(@highlight_1, 10);
-        }
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    .main_header {
-        margin-top: 3em;
-    }
-    .logo {
-            display: block;
-            margin: 0 auto;
-            text-align: center;
-        img {
-            float: none;
-        }
-        h1 {
-            float: none;
-            margin: 0;
-            font-size: 1.4em;
-        }
+@media screen and (max-width: 768px) {
+    .navbar-brand {
+        padding: 0px;
     }
 
-    .main-nav {
-        float: none;
-        text-align: center;
-        a {
-            margin: 0 .5em;
-        }
+    .navbar-brand img {
+        height: 100%;
+        padding: 15px;
+        width: auto;
     }
-}
 
-@media only screen and (max-width: 451px) {
-    .main-nav {
-        .custom_btn {
-            margin-top: 1em;
-        }
+    .custom-navbar .navbar-brand {
+        height: 65px;
+    }
+
+    .custom-navbar .nav >li >a {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .custom-navbar .navbar-toggle {
+        padding: 10px;
+        margin-top: 12px;
     }
 }

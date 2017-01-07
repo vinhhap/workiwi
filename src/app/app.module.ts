@@ -19,6 +19,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 import { JobService } from "./shared/services/job.service";
 import { AuthService } from "./shared/services/auth.service";
+import { SearchService } from './shared/services/search.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { AuthService } from "./shared/services/auth.service";
     SessionsModule,
     AdminModule
   ],
-  providers: [JobService, AuthService, SeoService],
+  providers: [JobService, AuthService, SeoService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { jobsRouting } from './jobs.routing';
@@ -8,6 +9,7 @@ import { JobItemComponent } from './job-item/job-item.component';
 import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { NavbarJobComponent } from './shared/navbar-job.component';
 import { ShareButtonsModule } from "ng2-sharebuttons";
+import { SearchBarJobsComponent } from './shared/search-bar-jobs.component';
 
 @NgModule({
     declarations: [
@@ -15,13 +17,16 @@ import { ShareButtonsModule } from "ng2-sharebuttons";
         JobsListComponent,
         JobItemComponent,
         JobDetailComponent,
-        JobsComponent
+        JobsComponent,
+        SearchBarJobsComponent
     ],
     imports: [
         CommonModule,
         Ng2SimplePageScrollModule.forRoot(),
         jobsRouting,
-        ShareButtonsModule
+        FormsModule,
+        ShareButtonsModule,
+        ReactiveFormsModule
     ]
 })
 export class JobsModule { }

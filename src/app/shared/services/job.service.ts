@@ -74,6 +74,28 @@ export class JobService {
     .flatMap(fbojs => Observable.combineLatest(fbojs));
   }
 
+  loadFirstJobsCityPage(pageSize: number, city: string): Observable<Job[]> {
+    return this.findJobs({
+      query: {
+        orderByChild: "city",
+        equalTo: city,
+        limitToLast: pageSize
+      }
+    });
+  }
+
+  loadNextJobsCityPage(jobKey: string, pageSize: number, city: string) {           
+    return this.af.database.list(`cities/${city}`, {
+      query: {
+        orderByKey: true,
+        endAt: jobKey,
+        limitToLast: pageSize + 1
+      }
+    })
+    .map(jpt => jpt.map(job => this.af.database.object(`jobs/${job.$key}`)))
+    .flatMap(fbojs => Observable.combineLatest(fbojs));
+  }
+
   findJobById(jobId: string): Observable<Job> {
     return this.af.database.object(`jobs/${jobId}`).map(Job.fromJson);
   }
@@ -82,22 +104,26 @@ export class JobService {
     let jobs = this.af.database.list("jobs");
     jobs.push(job).then((item) => {
       this.af.database.object(`types/${job.jobType}/${item.key}`).set(true);
+      this.af.database.object(`cities/${job.city}/${item.key}`).set(true);
       this.router.navigate(["/jobs", item.key, job.url])
     });
   }
   
   editJob(job: Job, jobId: string, currentJobValue: Job): void {
     let theJob = this.af.database.object(`jobs/${jobId}`);
-    if(job.jobType !== currentJobValue.jobType) {
+    if(job.jobType !== currentJobValue.jobType || job.city !== currentJobValue.city) {
       this.af.database.object(`types/${currentJobValue.jobType}/${jobId}`).remove();
       this.af.database.object(`types/${job.jobType}/${jobId}`).set(true);
+      this.af.database.object(`cities/${currentJobValue.city}/${jobId}`).remove();
+      this.af.database.object(`cities/${job.city}/${jobId}`).set(true);
     }
     theJob.update(job).then(() => { this.router.navigate(["/jobs", jobId, job.url]) });
   }
 
-  removeJob(jobId: string, type: string): void {
+  removeJob(jobId: string, type: string, city: string): void {
     let theJob = this.af.database.object(`jobs/${jobId}`);
     let jobType = this.af.database.object(`types/${type}/${jobId}`);
+    let jobCity = this.af.database.object(`cities/${city}/${jobId}`);
     theJob.remove();
     jobType.remove();
   }

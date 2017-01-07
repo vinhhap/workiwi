@@ -1,4 +1,4 @@
-<div class="col-xs-12 item-wrapper">
+<!--<div class="col-xs-12 item-wrapper">
   <a [routerLink]="[job.$key, job.url]">
       <div class="panel panel-default">
           <div class="panel-body item clearfix">
@@ -13,4 +13,21 @@
           </div>
       </div>
   </a>
+</div>-->
+
+<div class="col-sm-12 item-wrapper">
+    <a [routerLink]="[job.$key, job.url]">
+        <div class="panel panel-default">
+            <div class="panel-body item clearfix">
+                <div class="image_wrapper">
+                    <img [src]="job.logo" [alt]="job.companyName">
+                </div>
+                <div class="info">
+                    <span class="job_title">{{job.jobTitle}}</span>
+                    <span class="job_info">{{job.companyName}} <span>&bull;</span> {{job.city}} <span>&bull;</span> {{job.deadline}}</span>
+                </div>
+                <span class="job_type {{job.jobType}} hidden-xs">{{getJobType(job.jobType)}}</span>
+            </div>
+        </div>
+    </a>
 </div>

@@ -2,7 +2,8 @@
 @import "./app/shared/less/variables.less";
 
 body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 3em;
 }
 
 body.admin {
@@ -42,7 +43,7 @@ body.admin {
 }
 .wrapper {
     padding-bottom: 5em;
-    width: 750px;
+    width: 900px;
     max-width: 90%;
     margin: 0 auto;
 }
@@ -57,5 +58,18 @@ a {
     border: none;
     img {
         width: 50px;
+    }
+}
+
+.fulltime {
+    color: @highlight_1;
+    &:before {
+        background: @highlight_1;
+    }
+}
+.parttime {
+    color: @highlight_2;
+    &:before {
+        background: @highlight_2;
     }
 }

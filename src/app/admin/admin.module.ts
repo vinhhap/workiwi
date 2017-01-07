@@ -1,4 +1,3 @@
-import { SearchService } from './../shared/services/search.service';
 import { AuthGuard } from './../shared/services/auth.guard';
 import { CommonModule } from '@angular/common';
 import { adminRouting } from './admin.routing';
@@ -29,8 +28,7 @@ import { NgModule } from '@angular/core';
         adminRouting
     ],
     providers: [
-        AuthGuard,
-        SearchService
+        AuthGuard
     ]
 })
 export class AdminModule {
