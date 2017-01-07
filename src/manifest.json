@@ -1,0 +1,11 @@
+{
+  "name": "Workiwi | Trang tuyển dụng cho Startup",
+  "short_name": "W",
+  "theme_color": "#22a7f0",
+  "background_color": "#22A7F0",
+  "display": "browser",
+  "Scope": "/",
+  "start_url": "/",
+  "icons": null,
+  "splash_pages": null
+}
