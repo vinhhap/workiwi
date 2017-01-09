@@ -1,15 +1,12 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'jb-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.less']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
 
   constructor(private elementRef: ElementRef) { }
-
-  ngOnInit() {
-  }
 
 }

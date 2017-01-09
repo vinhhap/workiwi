@@ -1,3 +1,4 @@
+import { DeadlineDatePipe } from './../shared/pipes/deadline-date.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
@@ -18,7 +19,8 @@ import { SearchBarJobsComponent } from './shared/search-bar-jobs.component';
         JobItemComponent,
         JobDetailComponent,
         JobsComponent,
-        SearchBarJobsComponent
+        SearchBarJobsComponent,
+        DeadlineDatePipe
     ],
     imports: [
         CommonModule,
