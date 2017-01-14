@@ -4,7 +4,7 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <form [formGroup]="form">
                     <div class="input-group">
-                        <input type="text" class="form-control search-box" placeholder="Nhập tên công việc hoặc từ khóa..." formControlName="q">
+                        <input type="text" class="form-control search-box" placeholder="Nhập tên công việc hoặc từ khóa..." formControlName="q" (keyup.enter)="onSearch()">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" [disabled]="!form.valid" (click)="onSearch()">Tìm kiếm</button>
                         </span>

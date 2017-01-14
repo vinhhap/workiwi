@@ -1,15 +1,5 @@
 <jb-search-bar-jobs></jb-search-bar-jobs>
 
-<!--<div class="container-fluid timeline">
-    <div class="row">
-        <jb-job-item *ngFor="let job of jobs" [job]="job"></jb-job-item>
-    </div>
-    <div class="load_more" *ngIf="jobs && isMore">
-        <button class="button" (click)="onLoadMore()">Tải thêm</button>
-    </div>
-</div>-->
-
-
 <div class="container jobs-list">
     <div class="row">
         <div class="type-search hidden-sm hidden-xs" *ngIf="!isSearch">
@@ -34,10 +24,13 @@
             <jb-job-item *ngFor="let job of jobs" [job]="job"></jb-job-item>
         </div>
     </div>
-    <div class="load_more" *ngIf="jobs && isMore">
+    <div class="load_more" *ngIf="jobs && isMore && !isLoading">
         <button class="button" (click)="onLoadMore()">Tải thêm</button>
     </div>
+    <div class="load_more" *ngIf="jobs && isLoading">
+        <button class="button" disabled ><i class="fa fa-spinner fa-spin"></i> Đang tải</button>
+    </div>
     <div class="load_more" *ngIf="jobs && !isMore && !isSearch">
-        <button class="button">Đã hết danh sách</button>
+        <button class="button" disabled>Đã hết danh sách</button>
     </div>
 </div>

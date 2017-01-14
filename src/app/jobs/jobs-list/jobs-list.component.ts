@@ -6,6 +6,7 @@ import { Job } from "../../shared/services/job";
 import { JobService } from "../../shared/services/job.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Rx";
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 @Component({
   selector: 'jb-jobs-list',
@@ -18,25 +19,28 @@ export class JobsListComponent implements OnInit, OnDestroy {
   public isMore: boolean = true;
   public isSearch: boolean = false;
   public totalSearch: number = 0;
+  public type: string;
+  public city: string;
+  public query: string;
+  public isLoading: boolean = false;
   private jobKey: string;
   private sub1: Subscription;
   private sub2: Subscription;
   private sub3: Subscription;
-  public type: string;
-  public city: string;
-  public query: string;
   private perPage: number = 10;
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute,
               private seoService: SeoService,
-              private searchService: SearchService) {
+              private searchService: SearchService,
+              private slimLoadingBarService: SlimLoadingBarService) {
     seoService.setTitle('Workiwi | Trang tuyển dụng việc làm cho Start Up');
     seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
     seoService.setMetaRobots('Index, Follow');
   }
 
   ngOnInit() {
+    this.slimLoadingBarService.start();
     this.sub1 = this.route.queryParams.subscribe(params => {
       this.type = params["type"];
       this.city = params["city"];
@@ -92,6 +96,7 @@ export class JobsListComponent implements OnInit, OnDestroy {
   }
 
   onLoadMore() {
+    this.isLoading = true;
     if(this.type) {
       this.sub3 = this.jobService.loadNextJobsTypePage(
         this.jobKey,
@@ -119,6 +124,7 @@ export class JobsListComponent implements OnInit, OnDestroy {
   }
 
   private subLoadMore(jobs) {
+    this.isLoading = false;
     if(jobs.length <= 1) {
       this.isMore = false;
     }
@@ -128,6 +134,7 @@ export class JobsListComponent implements OnInit, OnDestroy {
   }
 
   private subFirstPage(jobs) {
+    this.slimLoadingBarService.complete();
     if(jobs.length > 0) {
       this.isMore = true;
       this.jobs = jobs.slice().reverse();
@@ -136,7 +143,6 @@ export class JobsListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.jobs = [];
-      
       this.isMore = false;
     }
   }

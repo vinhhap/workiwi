@@ -22,7 +22,7 @@
                 <li class="sidebar-search">
                     <form [formGroup]="searchForm">
                         <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Từ khóa" formControlName="q">
+                            <input type="text" class="form-control" placeholder="Từ khóa" formControlName="q" (keyup.enter)="onSearch()">
                             <span class="input-group-btn">
                             <button class="btn btn-default" type="button" (click)="onSearch()" [disabled]="!searchForm.valid" data-toggle="modal" data-target="#myModal">
                                 <i class="fa fa-search"></i>

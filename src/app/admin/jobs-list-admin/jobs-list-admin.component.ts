@@ -22,6 +22,7 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
   public totalNum;
   public jobs: Job[];
   public isMore: boolean = true;
+  public isLoading: boolean = false;
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute,
@@ -51,6 +52,7 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
   }
 
   onLoadMore() {
+    this.isLoading = true;
     if(!this.type) {
       this.sub4 = this.jobService.loadNextJobsPage(
         this.jobKey,
@@ -70,6 +72,7 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
   }
 
    private subLoadMore(jobs) {
+    this.isLoading = false;
     if(jobs.length <= 1) {
       this.isMore = false;
     }

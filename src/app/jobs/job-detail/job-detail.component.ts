@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Job } from "../../shared/services/job";
 import { JobService } from "../../shared/services/job.service";
 import { ShareButton, ShareProvider } from "ng2-sharebuttons";
+import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 
 @Component({
   selector: 'jb-job-detail',
@@ -26,10 +27,14 @@ export class JobDetailComponent implements OnInit {
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute,
-              private seoService: SeoService
+              private seoService: SeoService,
+              private slimLoadingBarService: SlimLoadingBarService
   ) { }
 
   ngOnInit() {
+    this.slimLoadingBarService.start(() => {
+            console.log('Loading complete');
+        });
     this.facebookButton = new ShareButton(
       ShareProvider.FACEBOOK,
       "<img src='assets/images/facebook.svg'>  ",
@@ -54,6 +59,7 @@ export class JobDetailComponent implements OnInit {
     this.sub = this.jobService.findJobById(this.jobId).subscribe(job => {
       this.job = job;
       if(this.job) {
+        this.slimLoadingBarService.complete();
         this.seoService.setTitle(`${this.job.jobTitle} | Workiwi | Trang tuyển dụng việc làm cho Start Up`);
         this.seoService.setMetaDescription('${this.job.jobTitle}, ${this.job.companyName}');
         this.seoService.setMetaRobots('Index, Follow');
