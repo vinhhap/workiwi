@@ -38,22 +38,22 @@ export class JobDetailComponent implements OnInit {
     this.facebookButton = new ShareButton(
       ShareProvider.FACEBOOK,
       "<img src='assets/images/facebook.svg'>  ",
-      "facebook"
+      "facebook social-btn"
     );
     this.googlePlusButton = new ShareButton(
       ShareProvider.GOOGLEPLUS,
       "<img src='assets/images/google-plus.svg'>  ",
-      "google_plus"
+      "google_plus social-btn"
     );
     this.linkedButton = new ShareButton(
       ShareProvider.LINKEDIN,
       "<img src='assets/images/linkedin.svg'>  ",
-      "linked_in"
+      "linked_in social-btn"
     );
     this.twitterButton = new ShareButton(
       ShareProvider.TWITTER,
       "<img src='assets/images/twitter.svg'>  ",
-      "twitter"
+      "twitter social-btn"
     );
     this.jobId = this.route.snapshot.params["id"];
     this.sub = this.jobService.findJobById(this.jobId).subscribe(job => {
