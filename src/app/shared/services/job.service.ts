@@ -2,7 +2,7 @@ import { Subject, Observable } from 'rxjs/Rx';
 import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseRef } from "angularfire2";
 import { Router } from "@angular/router";
-import { Job } from "./job";
+import { Job } from "../model/job";
 
 @Injectable()
 export class JobService {
@@ -126,6 +126,7 @@ export class JobService {
     let jobCity = this.af.database.object(`cities/${city}/${jobId}`);
     theJob.remove();
     jobType.remove();
+    jobCity.remove();
   }
 
   totalJobsNum() {

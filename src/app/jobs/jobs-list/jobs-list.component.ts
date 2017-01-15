@@ -2,7 +2,7 @@ import { SearchService } from './../../shared/services/search.service';
 import { SeoService } from './../../shared/services/seo.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from "Rxjs/rx";
-import { Job } from "../../shared/services/job";
+import { Job } from "../../shared/model/job";
 import { JobService } from "../../shared/services/job.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Rx";
@@ -64,6 +64,7 @@ export class JobsListComponent implements OnInit, OnDestroy {
         }).subscribe(jobs => {
           this.isMore = false;
           this.isSearch = true;
+          this.slimLoadingBarService.complete();
           let results = [];
           if(jobs) {
             this.totalSearch = jobs["total"];

@@ -1,4 +1,4 @@
-import { LoginGuard } from './../shared/services/login.guard';
+import { LoginGuard } from './../shared/guards/login.guard';
 import { SessionsComponent } from './sessions.component';
 import { Routes, RouterModule } from '@angular/router';
 

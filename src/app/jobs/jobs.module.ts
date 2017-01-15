@@ -11,7 +11,8 @@ import { JobsListComponent } from './jobs-list/jobs-list.component';
 import { NavbarJobComponent } from './shared/navbar-job.component';
 import { ShareButtonsModule } from "ng2-sharebuttons";
 import { SearchBarJobsComponent } from './shared/search-bar-jobs.component';
-import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
         FormsModule,
         ShareButtonsModule,
         ReactiveFormsModule,
-        SlimLoadingBarModule.forRoot()
+        SlimLoadingBarModule.forRoot(),
+        Ng2AutoCompleteModule
     ]
 })
 export class JobsModule { }

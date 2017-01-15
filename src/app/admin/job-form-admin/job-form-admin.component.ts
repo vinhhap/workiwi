@@ -1,4 +1,4 @@
-import { Job } from './../../shared/services/job';
+import { Job } from './../../shared/model/job';
 import {
   Component,
   OnInit,
@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { JobService } from "../../shared/services/job.service";
+import { CityListService } from "../../shared/services/city-list.service";
 
 @Component({
   selector: 'jb-job-form-admin',
@@ -18,10 +19,13 @@ export class JobFormAdminComponent implements OnInit, OnChanges {
   
   @Input() initialValue: any;
   form: FormGroup;
-  ckeditorContent:any;
+  ckeditorContent: any;
   private job: Job;
+  public citiesName: string[];
 
-  constructor(private fb: FormBuilder, private jobService: JobService) {
+  constructor(private fb: FormBuilder,
+              private jobService: JobService,
+              private cityListService: CityListService) {
     this.form = fb.group({
       jobTitle: ["", Validators.required],
       companyName: ["", Validators.required],
@@ -33,7 +37,6 @@ export class JobFormAdminComponent implements OnInit, OnChanges {
       applyMethod: ["", Validators.required],
       deadline: ["", Validators.required],
       url: ["", Validators.required],
-      // active: [true, Validators.required],
       companyDescription: [""],
       logo: [""]
     });
@@ -41,6 +44,7 @@ export class JobFormAdminComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.ckeditorContent = `<p>My HTML</p>`;
+    this.citiesName = this.cityListService.cityName;
   }
 
   ngOnChanges(changes: SimpleChanges) {

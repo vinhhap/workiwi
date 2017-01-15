@@ -1,4 +1,4 @@
-import { AuthGuard } from './../shared/services/auth.guard';
+import { AuthGuard } from './../shared/guards/auth.guard';
 import { JobsListAdminComponent } from './jobs-list-admin/jobs-list-admin.component';
 import { EditJobComponent } from './edit-job/edit-job.component';
 import { NewJobComponent } from './new-job/new-job.component';

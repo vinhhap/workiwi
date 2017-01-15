@@ -1,7 +1,7 @@
 import { SeoService } from './../../shared/services/seo.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Job } from "../../shared/services/job";
+import { Job } from "../../shared/model/job";
 import { JobService } from "../../shared/services/job.service";
 import { Observable, Subscription } from "rxjs/Rx";
 

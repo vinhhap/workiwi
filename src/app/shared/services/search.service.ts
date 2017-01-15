@@ -1,4 +1,4 @@
-import { FirebaseRef } from 'angularfire2';
+import { FirebaseRef, AngularFire } from 'angularfire2';
 import { Subject } from 'rxjs/Rx';
 import { Injectable, Inject } from '@angular/core';
 
@@ -6,7 +6,7 @@ import { Injectable, Inject } from '@angular/core';
 export class SearchService {
     private sdkDb: any;
 
-    constructor(@Inject(FirebaseRef) fb) {
+    constructor(@Inject(FirebaseRef) fb, private af: AngularFire) {
         this.sdkDb = fb.database().ref();
     }
 
@@ -22,7 +22,7 @@ export class SearchService {
                 subject.complete();
                 value.ref.remove();
             }
-        })
+        });
 
         return subject.asObservable();
     }

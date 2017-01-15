@@ -2,7 +2,7 @@ import { SeoService } from './../../shared/services/seo.service';
 import { Subscription, Observable } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { Job } from "../../shared/services/job";
+import { Job } from "../../shared/model/job";
 import { JobService } from "../../shared/services/job.service";
 import { ShareButton, ShareProvider } from "ng2-sharebuttons";
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';

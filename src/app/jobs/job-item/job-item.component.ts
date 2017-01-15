@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Job } from "../../shared/services/job";
+import { Job } from "../../shared/model/job";
 
 @Component({
   selector: 'jb-job-item',

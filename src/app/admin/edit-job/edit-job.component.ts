@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Rx';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { JobService } from "../../shared/services/job.service";
-import { Job } from "../../shared/services/job";
+import { Job } from "../../shared/model/job";
 
 @Component({
   selector: 'jb-edit-job',

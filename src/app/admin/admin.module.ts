@@ -1,4 +1,4 @@
-import { AuthGuard } from './../shared/services/auth.guard';
+import { AuthGuard } from './../shared/guards/auth.guard';
 import { CommonModule } from '@angular/common';
 import { adminRouting } from './admin.routing';
 import { CKEditorModule } from 'ng2-ckeditor';
