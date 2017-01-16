@@ -5,12 +5,12 @@ import { AuthService } from './../../shared/services/auth.service';
 import { Component, OnInit, NgZone, OnDestroy, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'jb-navbar-admin',
-  templateUrl: './navbar-admin.component.html',
-  styleUrls: ['./navbar-admin.component.less']
+  selector: 'jb-sidebar-admin',
+  templateUrl: './sidebar-admin.component.html',
+  styleUrls: ['./sidebar-admin.component.less']
 })
-export class NavbarAdminComponent implements OnInit, OnDestroy {
-  
+export class SidebarAdminComponent implements OnInit, OnDestroy {
+
   @Output() resultsChange = new EventEmitter();
 
   public searchForm: FormGroup;
@@ -54,6 +54,5 @@ export class NavbarAdminComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
-
 
 }

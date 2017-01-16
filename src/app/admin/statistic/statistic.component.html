@@ -1,0 +1,95 @@
+<div class="statistic">
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-globe fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{total}}</div>
+                            <div>Tổng số công việc</div>
+                        </div>
+                    </div>
+                </div>
+                <a [routerLink]="['/admin/jobs']">
+                    <div class="panel-footer">
+                        <span class="pull-left">Xem chi tiết</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-battery-full fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{fulltime}}</div>
+                            <div>Việc Full-time</div>
+                        </div>
+                    </div>
+                </div>
+                <a [routerLink]="['/admin/jobs']" [queryParams]="{ type: 'fulltime' }">
+                    <div class="panel-footer">
+                        <span class="pull-left">Xem chi tiết</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-battery-half fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{parttime}}</div>
+                            <div>Việc Part-time</div>
+                        </div>
+                    </div>
+                </div>
+                <a [routerLink]="['/admin/jobs']" [queryParams]="{ type: 'parttime' }">
+                    <div class="panel-footer">
+                        <span class="pull-left">Xem chi tiết</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-podcast fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{intern}}</div>
+                            <div>Việc Thực tập</div>
+                        </div>
+                    </div>
+                </div>
+                <a [routerLink]="['/admin/jobs']" [queryParams]="{ type: 'intern' }">
+                    <div class="panel-footer">
+                        <span class="pull-left">Xem chi tiết</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

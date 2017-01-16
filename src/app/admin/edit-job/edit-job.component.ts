@@ -1,3 +1,4 @@
+import { PageTitleAdminService } from './../../shared/services/page-title-admin.service';
 import { SeoService } from './../../shared/services/seo.service';
 import { Subscription } from 'rxjs/Rx';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -18,7 +19,8 @@ export class EditJobComponent implements OnInit, OnDestroy {
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute,
-              private seoService: SeoService
+              private seoService: SeoService,
+              private pageTitleAdminService: PageTitleAdminService
   ) {
     
   }
@@ -31,12 +33,19 @@ export class EditJobComponent implements OnInit, OnDestroy {
         this.seoService.setTitle(`Chỉnh sửa ${this.job.jobTitle} | Workiwi | Trang tuyển dụng việc làm cho Start Up`);
         this.seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
         this.seoService.setMetaRobots('None');
+        this.pageTitleAdminService.changeTitle(`<i aria-hidden="true" class="fa fa-pencil-square-o"></i> Chỉnh sửa ${this.job.jobTitle}`)
       }
     });
   }
 
   onSave(form) {
     this.jobService.editJob(form.form.value, this.jobId, this.job);
+  }
+
+  onRemove(key: string, type: string, city: string) {
+    if(confirm("Bạn muốn xóa công việc này?")) {
+      this.jobService.removeJob(key, type, city);
+    }
   }
 
   ngOnDestroy() {

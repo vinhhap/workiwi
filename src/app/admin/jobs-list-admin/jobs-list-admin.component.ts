@@ -1,6 +1,7 @@
+import { PageTitleAdminService } from './../../shared/services/page-title-admin.service';
 import { SeoService } from './../../shared/services/seo.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Job } from "../../shared/model/job";
 import { JobService } from "../../shared/services/job.service";
 import { Observable, Subscription } from "rxjs/Rx";
@@ -12,21 +13,22 @@ import { Observable, Subscription } from "rxjs/Rx";
 })
 export class JobsListAdminComponent implements OnInit, OnDestroy {
 
+  @Output() pageTitle = new EventEmitter();
+
   private sub1: Subscription;
-  private sub2: Subscription;
   private sub3: Subscription;
   private sub4: Subscription;
   private type: string;
   private jobKey: string;
   private perPage: number = 15;
-  public totalNum;
   public jobs: Job[];
   public isMore: boolean = true;
   public isLoading: boolean = false;
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute,
-              private seoService: SeoService) {
+              private seoService: SeoService,
+              private pageTitleAdminService: PageTitleAdminService) {
     seoService.setTitle('Quản lý | Workiwi | Trang tuyển dụng việc làm cho Start Up');
     seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
     seoService.setMetaRobots('None');
@@ -36,13 +38,24 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
     this.sub1 = this.route.queryParams.subscribe(params => {
       this.type = params["type"];
       this.isMore = true;
+            switch(this.type) {
+        case "fulltime":
+          this.pageTitleAdminService.changeTitle('<i aria-hidden="true" class="fa fa-battery-full"></i> Quản lý công việc [Full-time]');
+          break;
+        case "parttime":
+          this.pageTitleAdminService.changeTitle('<i aria-hidden="true" class="fa fa-battery-half"></i> Quản lý công việc [Part-time]');
+          break;
+        case "intern":
+          this.pageTitleAdminService.changeTitle('<i aria-hidden="true" class="fa fa-podcast"></i> Quản lý công việc [Thực tập]');
+          break;
+        default:
+          this.pageTitleAdminService.changeTitle('<i aria-hidden="true" class="fa fa-globe"></i> Quản lý công việc [Toàn bộ]');
+      }
       if(!this.type) {
-        this.sub2 = this.jobService.totalJobsNum().subscribe(val => this.totalNum = val);
         this.sub3 = this.jobService.loadFirstJobsPage(this.perPage).subscribe(jobs => {
           this.subFirstPage(jobs);
         });
       } else {
-        this.sub2 = this.jobService.totalJobsNumByType(this.type).subscribe(val => this.totalNum = val);
         this.sub3 = this.jobService.loadFirstJobsTypePage(this.perPage, this.type).subscribe(jobs => {
           this.subFirstPage(jobs);
         });
@@ -96,22 +109,8 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
     }
   }
 
-  get typeName(): string {
-    switch(this.type) {
-      case "fulltime":
-        return "Full-time";
-      case "parttime":
-        return "Part-time";
-      case "intern":
-        return "Thực tập";
-      default:
-        return "";
-    }
-  }
-
   ngOnDestroy() {
     this.sub1.unsubscribe();
-    this.sub2.unsubscribe();
     this.sub3.unsubscribe();
     if(this.sub4) {
       this.sub4.unsubscribe();

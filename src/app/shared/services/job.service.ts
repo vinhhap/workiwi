@@ -129,30 +129,6 @@ export class JobService {
     jobCity.remove();
   }
 
-  totalJobsNum() {
-    const subject = new Subject();
-
-    this.sdkDb.ref("jobs")
-              .once("value")
-              .then(snapshot => {
-                subject.next(snapshot.numChildren());
-                subject.complete();
-              });
-    return subject.asObservable();
-  }
-
-  totalJobsNumByType(type: string) {
-    const subject = new Subject();
-
-    this.sdkDb.ref(`types/${type}`)
-              .once("value")
-              .then(snapshot => {
-                subject.next(snapshot.numChildren());
-                subject.complete();
-              });
-    return subject.asObservable();
-  }
-
   uploadFile(file: any) {
     let promise = new Promise((res,rej) => {
         let fileName = file.name;

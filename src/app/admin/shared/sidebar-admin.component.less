@@ -1,0 +1,113 @@
+@import "../../shared/less/variables.less";
+
+:host {
+    z-index: 800;
+    flex: 0 0 220px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #f5f7f8;
+    transform: translateX(0);
+    position: relative;
+    border-right: #dfe1e3 1px solid;
+    a {
+        text-decoration: none;
+    }
+}
+    
+.logo-wrapper {
+    width: 140px;
+    margin-top: 1.5rem;
+}
+.ava-wrapper {
+    img {
+        width: 100px;
+        margin-top: 1.5rem;
+    }
+}
+.admin-sidebar-body {
+    margin-top: 2rem;
+    flex-grow: 1;
+    overflow-y: auto;
+    .admin-sidebar-search {
+        position: relative;
+        margin: 0 15px 10px;
+        input {
+            border-radius: 2rem 0 0 2rem;
+        }
+        span {
+            background: @highlight_3;
+            border-color: @highlight_3;
+            color: #fff;
+            border-radius: 0 2rem 2rem 0;
+            cursor: pointer
+        }
+    }
+    .admin-sidebar-list {
+        margin-top: 1.5rem;
+        padding: 0 15px 0 0;
+        list-style: none;
+        font-size: 1.3rem;
+        line-height: 1.5em;
+        .active {
+            background: @highlight_3;
+            color: #fff;
+            opacity: 1;
+        }
+        a {
+            display: flex;
+            align-items: center;
+            padding: 10px 10px 10px 15px;
+            border-radius: 0 2rem 2rem 0;
+            color: #242628;
+            opacity: .9;
+            transition: none;
+            font-size: 1.5rem;
+            &:hover {
+                background: lighten(@highlight_3, 15);
+                
+            }
+            i {
+                margin-right: 8px;
+                width: 15px;
+                height: 15px;
+                font-size: 1.5rem;
+                line-height: 1;
+            }
+        }
+    }
+}
+
+.admin-sidebar-footer {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border-top: #dfe1e3 1px solid;
+    color: #7d878a;
+    .admin-sidebar-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 10px;
+        width: 45px;
+        height: 27px;
+        line-height: 1;
+        border-right: #dfe1e3 1px solid;
+        box-sizing: initial;
+        cursor: pointer;
+        i {
+            color: #666e70;
+        }
+    }
+    .admin-sidebar-footer-link {
+        flex-grow: 1;
+        padding: 12px;
+        color: #666e70;
+        font-size: 1rem;
+        line-height: 1;
+        font-weight: 200;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}

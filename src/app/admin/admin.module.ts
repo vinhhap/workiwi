@@ -1,3 +1,4 @@
+import { PageTitleAdminService } from './../shared/services/page-title-admin.service';
 import { AuthGuard } from './../shared/guards/auth.guard';
 import { CommonModule } from '@angular/common';
 import { adminRouting } from './admin.routing';
@@ -10,6 +11,9 @@ import { JobsListAdminComponent } from './jobs-list-admin/jobs-list-admin.compon
 import { NavbarAdminComponent } from './shared/navbar-admin.component';
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
+import { SidebarAdminComponent } from './shared/sidebar-admin.component';
+import { StatisticComponent } from './statistic/statistic.component';
+import { StatisticService } from "../shared/services/statistic.service";
 
 @NgModule({
     declarations: [
@@ -18,7 +22,9 @@ import { NgModule } from '@angular/core';
         JobFormAdminComponent,
         JobsListAdminComponent,
         NewJobComponent,
-        EditJobComponent
+        EditJobComponent,
+        SidebarAdminComponent,
+        StatisticComponent
     ],
     imports: [
         CommonModule,
@@ -28,7 +34,9 @@ import { NgModule } from '@angular/core';
         adminRouting
     ],
     providers: [
-        AuthGuard
+        AuthGuard,
+        PageTitleAdminService,
+        StatisticService
     ]
 })
 export class AdminModule {

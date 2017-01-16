@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./app/shared/less/variables.less";
 
-body {
-    font-family: 'Roboto', sans-serif;
-    margin-bottom: 3em;
+html {
+    height: 100%
 }
 
-body.admin {
-    background: @gray-lightest;
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
 }
 
 .clearfix:before, .clearfix:after {
@@ -74,8 +74,14 @@ a {
     }
 }
 .parttime {
-    color: @highlight_2;
+    color: @highlight_3;
     &:before {
-        background: @highlight_2;
+        background: @highlight_3;
+    }
+}
+.intern {
+    color: darken(@highlight_2, 10);
+    &:before {
+        background: darken(@highlight_2, 10);
     }
 }
