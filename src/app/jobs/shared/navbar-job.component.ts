@@ -17,6 +17,10 @@ export class NavbarJobComponent {
 
   goToRoute(param1, param2 = null) {
     this.clearCache();
-    this.route.navigate(param1, param2)
+    if(param2) {
+      this.route.navigate(param1, param2);
+    } else {
+      this.route.navigate(param1);
+    }
   }
 }
