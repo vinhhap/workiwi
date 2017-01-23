@@ -33,7 +33,8 @@ import { CityListService } from "./shared/services/city-list.service";
     AngularFireModule.initializeApp(firebaseConfig, authConfig),
     JobsModule,
     SessionsModule,
-    AdminModule
+    AdminModule,
+
   ],
   providers: [
     JobService,

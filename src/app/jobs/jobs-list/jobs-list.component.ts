@@ -7,6 +7,7 @@ import { JobService } from "../../shared/services/job.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Rx";
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import { JobListCacheService } from "../../shared/services/job-list-cache.service";
 
 @Component({
   selector: 'jb-jobs-list',
@@ -33,7 +34,8 @@ export class JobsListComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private seoService: SeoService,
               private searchService: SearchService,
-              private slimLoadingBarService: SlimLoadingBarService) {
+              private slimLoadingBarService: SlimLoadingBarService,
+              private jobListCacheService: JobListCacheService) {
     seoService.setTitle('Workiwi | Trang tuyển dụng việc làm cho Start Up');
     seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
     seoService.setMetaRobots('Index, Follow');
@@ -49,49 +51,65 @@ export class JobsListComponent implements OnInit, OnDestroy {
       this.isSearch = false;
 
       if(this.type) {
-        this.sub2 = this.jobService.loadFirstJobsTypePage(this.perPage, this.type).subscribe(jobs => {
-          this.subFirstPage(jobs);
-        });
+        if(this.jobListCacheService.jobsCached && this.jobListCacheService.jobsCached.length > 0) {
+          this.hasJobsCached();
+        } else {
+          this.sub2 = this.jobService.loadFirstJobsTypePage(this.perPage, this.type).subscribe(jobs => {
+            this.subFirstPage(jobs);
+          });
+        }
       } else if(this.city) {
-        this.sub2 = this.jobService.loadFirstJobsCityPage(this.perPage, this.city).subscribe(jobs => {
-          this.subFirstPage(jobs);
-        });
+        if(this.jobListCacheService.jobsCached && this.jobListCacheService.jobsCached.length > 0) {
+          this.hasJobsCached();
+        } else {
+          this.sub2 = this.jobService.loadFirstJobsCityPage(this.perPage, this.city).subscribe(jobs => {
+            this.subFirstPage(jobs);
+          });
+        }
       } else if(params["q"]) {
-        this.sub2= this.searchService.doSearch({
-          index: "firebase",
-          type: "job",
-          q: params["q"]
-        }).subscribe(jobs => {
-          this.isMore = false;
-          this.isSearch = true;
-          this.slimLoadingBarService.complete();
-          let results = [];
-          if(jobs) {
-            this.totalSearch = jobs["total"];
-            if(jobs["hits"] && jobs["hits"].length > 0) {
-               results = jobs["hits"].map(job => {
-                return {
-                  $key: job._id,
-                  jobTitle: job._source.jobTitle,
-                  city: job._source.city,
-                  companyName: job._source.companyName,
-                  url: job._source.url,
-                  logo: job._source.logo,
-                  jobType: job._source.jobType,
-                  deadline: job._source.deadline
-                }
-              });
-              this.jobs = results.slice().reverse();
-            } else {
-              this.jobs = [];
+        if(this.jobListCacheService.jobsCached && this.jobListCacheService.jobsCached.length > 0 ) {
+          this.hasJobsCached();
+        } else {
+          this.sub2 = this.searchService.doSearch({
+            index: "firebase",
+            type: "job",
+            q: params["q"]
+          }).subscribe(jobs => {
+            this.isMore = false;
+            this.isSearch = true;
+            this.slimLoadingBarService.complete();
+            let results = [];
+            if(jobs) {
+              this.totalSearch = jobs["total"];
+              if(jobs["hits"] && jobs["hits"].length > 0) {
+                results = jobs["hits"].map(job => {
+                  return {
+                    $key: job._id,
+                    jobTitle: job._source.jobTitle,
+                    city: job._source.city,
+                    companyName: job._source.companyName,
+                    url: job._source.url,
+                    logo: job._source.logo,
+                    jobType: job._source.jobType,
+                    deadline: job._source.deadline
+                  }
+                });
+                this.jobs = results.slice().reverse();
+              } else {
+                this.jobs = [];
+              }
             }
-           
-          }
-        });
+          });
+        }
       } else {
-        this.sub2 = this.jobService.loadFirstJobsPage(this.perPage).subscribe(jobs => {
-          this.subFirstPage(jobs);
-        });
+        if(this.jobListCacheService.jobsCached && this.jobListCacheService.jobsCached.length > 0) {
+          this.hasJobsCached();
+        } else {
+          this.sub2 = this.jobService.loadFirstJobsPage(this.perPage).subscribe(jobs => {
+            this.subFirstPage(jobs);
+            
+          });
+        }
       }
     });
   }
@@ -120,18 +138,23 @@ export class JobsListComponent implements OnInit, OnDestroy {
         this.perPage
       ).subscribe(jobs => {
         this.subLoadMore(jobs);
+        this.jobListCacheService.saveToJobCached(this.jobs);
       });
     }
   }
 
   private subLoadMore(jobs) {
-    this.isLoading = false;
-    if(jobs.length <= 1) {
-      this.isMore = false;
+    if(jobs.length > 0 && jobs[jobs.length - 1].$key === this.jobKey) {
+      this.isLoading = false;
+      if(jobs.length <= 1) {
+        this.isMore = false;
+      }
+      this.jobKey = jobs[0].$key;
+      jobs.pop();
+      this.jobListCacheService.saveToJobKeyCached(this.jobKey);
+      this.jobs = this.jobs.concat(jobs.slice().reverse());
+      this.jobListCacheService.saveToJobCached(this.jobs);
     }
-    this.jobKey = jobs[0].$key;
-    jobs.pop();
-    this.jobs = this.jobs.concat(jobs.slice().reverse());
   }
 
   private subFirstPage(jobs) {
@@ -139,18 +162,36 @@ export class JobsListComponent implements OnInit, OnDestroy {
     if(jobs.length > 0) {
       this.isMore = true;
       this.jobs = jobs.slice().reverse();
-      if(jobs[0]) {
-        this.jobKey = jobs[0].$key;
-      }
+      this.jobListCacheService.saveToJobCached(this.jobs);
+      this.jobKey = jobs[0].$key;
+      this.jobListCacheService.saveToJobKeyCached(this.jobKey);
     } else {
       this.jobs = [];
       this.isMore = false;
     }
   }
 
+  private hasJobsCached() {
+    this.jobs = this.jobListCacheService.jobsCached;
+    this.jobKey = this.jobListCacheService.jobKeyCached;
+    this.slimLoadingBarService.complete();
+  }
+
+  clearCache() {
+    this.jobListCacheService.clearCache();
+  }
+
+  onScroll() {
+    if(this.jobs && this.isMore && !this.isLoading) {
+      this.onLoadMore();
+    }
+  }
+
   ngOnDestroy() {
     this.sub1.unsubscribe();
-    this.sub2.unsubscribe();
+    if(this.sub2) {
+      this.sub2.unsubscribe();
+    }
     if(this.sub3) {
       this.sub3.unsubscribe();
     }

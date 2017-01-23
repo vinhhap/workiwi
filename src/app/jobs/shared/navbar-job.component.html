@@ -6,7 +6,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars" aria-hidden="true"></i>
             </button>
-            <a [routerLink]='["/"]' class="navbar-brand">
+            <a class="navbar-brand" (click)="goToRoute(['/'])">
                 <img src="assets/images/smile.svg" alt="Workiwi">
             </a>
             </div>
@@ -14,13 +14,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a [routerLink]="['/jobs']">Công việc</a></li>
+                    <li><a [routerLink]="['/jobs']" (click)="clearCache()">Công việc</a></li>
                     <li class="dropdown visible-xs visible-sm">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Việc theo thể loại <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a [routerLink]="['/jobs']" [queryParams]="{ type: 'fulltime' }">Full-time</a></li>
-                            <li><a [routerLink]="['/jobs']" [queryParams]="{ type: 'parttime' }">Part-time</a></li>
-                            <li><a [routerLink]="['/jobs']" [queryParams]="{ type: 'intern' }">Thực tập</a></li>
+                            <li><a (click)="goToRoute(['/jobs'], { queryParams: { type: 'fulltime' } })">Full-time</a></li>
+                            <li><a (click)="goToRoute(['/jobs'], { queryParams: { type: 'parttime' } })">Part-time</a></li>
+                            <li><a (click)="goToRoute(['/jobs'], { queryParams: { type: 'intern' } })">Thực tập</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Giới thiệu</a></li>
@@ -35,7 +35,7 @@
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
-        <ng2-slim-loading-bar [color]="'#fd7576'"></ng2-slim-loading-bar>
     </nav>
-    
 </div>
+
+<ng2-slim-loading-bar [color]="'#fd7576'"></ng2-slim-loading-bar>

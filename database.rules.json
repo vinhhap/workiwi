@@ -4,7 +4,7 @@
     ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'",
     "jobs": {
       ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'",
-      ".indexOn": ["jobTitle", "city"]
+      ".indexOn": ["jobTitle", "city", "jobType"]
     },
     "types": {
       ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'"

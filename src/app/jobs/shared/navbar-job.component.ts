@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { JobListCacheService } from "../../shared/services/job-list-cache.service";
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'jb-navbar-job',
   templateUrl: './navbar-job.component.html',
   styleUrls: ['./navbar-job.component.less']
 })
-export class NavbarJobComponent implements OnInit {
+export class NavbarJobComponent {
 
-  constructor() { }
+  constructor(private jobListCacheService: JobListCacheService, private route: Router) { }
 
-  ngOnInit() {
+  clearCache() {
+    this.jobListCacheService.clearCache();
   }
 
+  goToRoute(param1, param2 = null) {
+    this.clearCache();
+    this.route.navigate(param1, param2)
+  }
 }
