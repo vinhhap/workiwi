@@ -2,6 +2,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { CityListService } from "../../shared/services/city-list.service";
+import { JobListCacheService } from "../../shared/services/job-list-cache.service";
 
 @Component({
   selector: 'jb-search-bar-jobs',
@@ -16,7 +17,8 @@ export class SearchBarJobsComponent implements OnInit {
   constructor(private router: Router,
               private fb: FormBuilder,
               private route: ActivatedRoute,
-              private cityListService: CityListService) { }
+              private cityListService: CityListService,
+              private jobListCacheService: JobListCacheService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -27,6 +29,7 @@ export class SearchBarJobsComponent implements OnInit {
   }
 
   onSearch() {
+    this.jobListCacheService.clearCache();
     if(this.form.controls["q"].value) {
       this.router.navigate(["/jobs"], {queryParams: {q: this.form.controls["q"].value}, relativeTo: this.route });
     } else if(this.form.controls["city"].value) {
