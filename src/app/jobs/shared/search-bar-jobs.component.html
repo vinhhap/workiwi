@@ -1,10 +1,9 @@
 <div class="jumbotron specialjum search-bar">
     <div class="over container body-content">
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-sm-6 col-sm-offset-3">
                 <form [formGroup]="form">
-                    <div class="form-group">
-                        <div class="col-sm-6">
+                    <div class="input-group">
                         <input 
                             type="text" 
                             class="form-control search-box" 
@@ -12,25 +11,10 @@
                             formControlName="q" 
                             (keyup.enter)="onSearch()"
                         >
-                        </div>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" (click)="onSearch()">Tìm kiếm</button>
+                        </span>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-4">
-                        <input 
-                            type="text" 
-                            class="form-control search-box" 
-                            placeholder="Tìm theo tỉnh thành..." 
-                            auto-complete 
-                            [source]="cities" 
-                            no-match-found-text="Không tìm thấy" 
-                            formControlName="city"
-                        />
-                        </div> 
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <button class="btn btn-default" type="button" (click)="onSearch()">Tìm kiếm</button>
-                    </div>
-                    
                 </form>
             </div><!-- /.col-lg-6 -->
         </div><!-- /.row -->

@@ -21,6 +21,10 @@
                             <li><a (click)="goToRoute(['/jobs'], { queryParams: { type: 'fulltime' } })">Full-time</a></li>
                             <li><a (click)="goToRoute(['/jobs'], { queryParams: { type: 'parttime' } })">Part-time</a></li>
                             <li><a (click)="goToRoute(['/jobs'], { queryParams: { type: 'intern' } })">Thực tập</a></li>
+                            <li class="divider"></li>
+                            <li><a (click)="goToRoute(['/jobs'], { queryParams: { city: 'Hà Nội' } })">Hà Nội</a></li>
+                            <li><a (click)="goToRoute(['/jobs'], { queryParams: { city: 'Hồ Chí Minh' } })">HCM</a></li>
+                            <li><a (click)="goToRoute(['/jobs'], { queryParams: { city: 'Đà Nẵng' } })">Đà Nẵng</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Giới thiệu</a></li>

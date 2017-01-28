@@ -12,6 +12,11 @@
                 <a [routerLink]="['/jobs']" [queryParams]="{ type: 'parttime' }" [class.active]="type === 'parttime'" (click)="clearCache()">Part-time</a>
                 <a [routerLink]="['/jobs']" [queryParams]="{ type: 'intern' }" [class.active]="type === 'intern'" (click)="clearCache()">Thực tập</a>
             </div>
+            <div class="col-sm-4 text-right">
+                <a [routerLink]="['/jobs']" [queryParams]="{ city: 'Hà Nội' }" [class.active]="city === 'Hà Nội'" (click)="clearCache()">Hà Nội</a>
+                <a [routerLink]="['/jobs']" [queryParams]="{ city: 'Hồ Chí Minh' }" [class.active]="city === 'Hồ Chí Minh'" (click)="clearCache()">HCM</a>
+                <a [routerLink]="['/jobs']" [queryParams]="{ city: 'Đà Nẵng' }" [class.active]="city === 'Đà Nẵng'" (click)="clearCache()">Đà Nẵng</a>
+            </div>
         </div>
 
         <div class="text-center" *ngIf="isSearch" style="margin-bottom: 3em;">
