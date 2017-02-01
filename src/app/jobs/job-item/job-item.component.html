@@ -3,7 +3,8 @@
         <div class="panel panel-default">
             <div class="panel-body item clearfix">
                 <div class="image_wrapper">
-                    <img [src]="job.logo" [alt]="job.companyName">
+                    <img [src]="job.logo" [alt]="job.companyName" *ngIf="job.logo">
+                    <img [src]="company?.logoUrl" [alt]="job.companyName" *ngIf="!job.logo && company?.logoUrl">
                 </div>
                 <div class="info">
                     <span class="job_title">{{job.jobTitle}}</span>

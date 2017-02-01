@@ -6,7 +6,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars" aria-hidden="true"></i>
             </button>
-            <a class="navbar-brand" [routerLink]="['/admin/jobs']">
+            <a class="navbar-brand" [routerLink]="['/admin/stat']">
                 <img src="assets/images/smile.svg" alt="">
             </a>
             </div>
@@ -24,8 +24,10 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li [routerLinkActive]="['active']"><a [routerLink]="['/admin/stat']"><i class="fa fa-area-chart" aria-hidden="true"></i> Thống kê</a></li>
-                    <li [routerLinkActive]="['active']"><a [routerLink]="['/admin/jobs']"><i class="fa fa-briefcase" aria-hidden="true"></i> Quản lý công việc</a></li>
-                    <li [routerLinkActive]="['active']"><a [routerLink]="['/admin/new']"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Thêm công việc</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin/jobs']"><i class="fa fa-briefcase" aria-hidden="true"></i> Quản lý công việc</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin/jobs/new']"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Thêm công việc</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin/companies']"><i class="fa fa-address-card" aria-hidden="true"></i> Danh sách công ty</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/admin/companies/new']"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm công ty</a></li>
                     <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-window-restore" aria-hidden="true"></i> Kết quả tìm kiếm</a></li>
                     <li><a [routerLink]="['/jobs']"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
                     <li *ngIf="loggedIn"><a href="#" (click)="onLogout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>

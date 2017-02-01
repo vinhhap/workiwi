@@ -38,21 +38,34 @@
                         <br>
                         <div class="row">
                             
-                            <share-button [button]='facebookButton' [description]="description" [image]="image" [title]="title"></share-button>
+                            <!--<share-button [button]='facebookButton' [description]="description" [image]="image" [title]="title"></share-button>
                             <share-button [button]='googlePlusButton' [description]="description" [image]="image" [title]="title"></share-button>
                             <share-button [button]='linkedButton' [description]="description" [image]="image"></share-button>
-                            <share-button [button]='twitterButton' [title]="title" [description]="description" [image]="image"></share-button>
+                            <share-button [button]='twitterButton' [title]="title" [description]="description" [image]="image"></share-button>-->
+
+                            <share-button [button]='facebookButton' [description]="description" [title]="title"></share-button>
+                            <share-button [button]='googlePlusButton' [description]="description" [title]="title"></share-button>
+                            <share-button [button]='linkedButton' [description]="description" ></share-button>
+                            <share-button [button]='twitterButton' [title]="title" [description]="description" ></share-button>
                         
                         </div>
                         <br>
                     </div>
                 </div>
 
-                <div class="panel-footer" *ngIf="job?.companyName || job?.companyDescription">
+                <div class="panel-footer" *ngIf="job?.companyDescription">
                     <h3>Giới thiệu về công ty</h3>
                     <p class="job_detail_logo">
                         <img [src]="job?.logo" [alt]="job?.companyName">
                         <span [innerHTML]="job?.companyDescription"></span>
+                    </p>
+                </div>
+
+                <div class="panel-footer" *ngIf="!job?.companyDescription && (company?.name || company?.comDes)">
+                    <h3>Giới thiệu về công ty</h3>
+                    <p class="job_detail_logo">
+                        <img [src]="company?.logoUrl" [alt]="job?.companyName">
+                        <span [innerHTML]="company?.comDes"></span>
                     </p>
                 </div>
             </div>

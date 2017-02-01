@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          Điền vào form
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <jb-company-form-admin #form></jb-company-form-admin>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onSave(form)" [disabled]="!form.form.valid">Lưu công ty</button>
+        <button type="button" class="btn btn-danger" (click)="onReset(form)">Reset form</button>
+      </div>
+    </div>
+  </div>
+</div>

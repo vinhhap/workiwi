@@ -1,0 +1,26 @@
+<form [formGroup]="form" autocomplete="off" novalidate>
+    <div class="col-lg-12">
+        <h3>Thông tin công ty</h3>
+        <div class="form-group">
+          <label>Tên công ty</label>
+          <input class="form-control" type="text" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label>Giới thiệu công ty</label>
+            <textarea class="form-control" formControlName="comDes" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Website (nếu có)</label>
+          <input class="form-control" type="text" formControlName="webUrl">
+        </div>
+        <div class="form-group">
+            <label>Ảnh logo</label>
+            <input type="file" (change)="onFileChange($event)">
+        </div>
+        <div class="form-group">
+            <input class="form-control" formControlName="logoUrl">
+            <br>
+            <img [src]="this.form.controls['logoUrl'].value" id="logo_img">
+        </div>
+    </div>
+</form>

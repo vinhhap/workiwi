@@ -1,6 +1,6 @@
 <header>
     <div class="logo-wrapper center-block">
-        <a [routerLink]="['/admin/jobs']">
+        <a [routerLink]="['/admin/stat']">
             <img src="assets/images/smile.svg" alt="">
         </a>
     </div>
@@ -24,13 +24,23 @@
             </a>
         </li>
         <li>
-            <a [routerLink]="['/admin/jobs']" [routerLinkActive]="['active']">
+            <a [routerLink]="['/admin/jobs']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
                 <i class="fa fa-briefcase" aria-hidden="true"></i> Quản lý công việc
             </a>
         </li>
         <li>
-            <a [routerLink]="['/admin/new']" [routerLinkActive]="['active']">
+            <a [routerLink]="['/admin/jobs/new']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Thêm công việc
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['/admin/companies']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+                <i class="fa fa-address-card" aria-hidden="true"></i> Danh sách công ty
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['/admin/companies/new']" [routerLinkActive]="['active']">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm công ty
             </a>
         </li>
         <li>

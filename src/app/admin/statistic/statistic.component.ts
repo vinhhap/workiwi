@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PageTitleAdminService } from "../../shared/services/page-title-admin.service";
 import { StatisticService } from "../../shared/services/statistic.service";
 import { Subscription } from "rxjs/Rx";
+import { SeoService } from './../../shared/services/seo.service';
 
 @Component({
   selector: 'jb-statistic',
@@ -19,7 +20,12 @@ export class StatisticComponent implements OnInit, OnDestroy {
   public intern;
 
   constructor(private pageTitleAdminService: PageTitleAdminService,
-              private statisticService: StatisticService) { }
+              private statisticService: StatisticService,
+              private seoService: SeoService) {
+                seoService.setTitle('Thống kê | Workiwi | Trang tuyển dụng việc làm cho Start Up');
+                seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
+                seoService.setMetaRobots('None');
+              }
 
   ngOnInit() {
     this.pageTitleAdminService.changeTitle('<i aria-hidden="true" class="fa fa-area-chart"></i> Thống kê');

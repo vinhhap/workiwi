@@ -21,6 +21,7 @@ import { JobService } from "./shared/services/job.service";
 import { AuthService } from "./shared/services/auth.service";
 import { SearchService } from './shared/services/search.service';
 import { CityListService } from "./shared/services/city-list.service";
+import { CompanyService } from "./shared/services/company.service";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CityListService } from "./shared/services/city-list.service";
     AuthService,
     SeoService,
     SearchService,
-    CityListService
+    CityListService,
+    CompanyService
   ],
   bootstrap: [AppComponent]
 })

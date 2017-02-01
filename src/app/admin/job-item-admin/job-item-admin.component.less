@@ -1,0 +1,75 @@
+@import "../../shared/less/variables.less";
+
+.fulltime {
+    background: @highlight_1;
+    border-color: darken(@highlight_1, 10);
+}
+.parttime {
+    background: @highlight_3;
+    border-color: darken(@highlight_3, 10);
+}
+.intern {
+    background: @highlight_2;
+    border-color: darken(@highlight_2, 10);
+}
+.item {
+    min-height: 90px;
+    position: relative;
+    z-index: 1;
+    display: table;
+    display: flex;
+    align-items: center;
+}
+a {
+    text-decoration: none;
+}
+img, .info, .job_type {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: .9em;
+    color: @secondary;
+}
+.image_wrapper {
+    width: 80px;
+    img {
+        width: 80px;
+        display: block;
+        margin: 0 auto;
+        border-radius: .25em;
+    }
+}
+.info {
+    line-height: 1.5;
+    padding-left: 25px;
+    .job_title {
+        font-weight: 700;
+        color: #fff;
+        font-size: 1.4em;
+    }
+    .job_key {
+        color: @main;
+        font-size: 1em;
+        display: block;
+        span {
+        margin: 0 .75em;
+        }
+    }
+}
+.job_type {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.5rem;
+    position: relative;
+    white-space: nowrap;
+    position: absolute;
+    right: 20px;
+}
+.date {
+    border: 1px solid @border;
+    border-radius: 10em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}

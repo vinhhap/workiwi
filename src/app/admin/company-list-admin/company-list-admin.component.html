@@ -1,0 +1,18 @@
+<table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" role="grid" style="width: 100%;">
+    <thead>
+        <tr role="row">
+          <th>Tên công ty</th>
+          <th>ID</th>
+          <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr class="gradeA odd" role="row" *ngFor="let company of companies">
+          <td>{{company.name}}</td>
+          <td>{{company.$key}}</td>
+          <td class="text-center">
+            <a [routerLink]="['edit', company.$key]" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> <button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" (click)="onRemove(company.$key)"></i></button>
+          </td>
+      </tr>
+    </tbody>
+</table>

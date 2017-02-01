@@ -4,31 +4,41 @@ import {
   OnInit,
   Input,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  OnDestroy,
+  NgZone
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { JobService } from "../../shared/services/job.service";
 import { CityListService } from "../../shared/services/city-list.service";
+import { Subscription } from "rxjs/Rx";
+import { SearchService } from "../../shared/services/search.service";
 
 @Component({
   selector: 'jb-job-form-admin',
   templateUrl: './job-form-admin.component.html',
   styleUrls: ['./job-form-admin.component.less']
 })
-export class JobFormAdminComponent implements OnInit, OnChanges {
+export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
   
   @Input() initialValue: any;
   form: FormGroup;
   ckeditorContent: any;
+  private sub: Subscription;
   private job: Job;
   public citiesName: string[];
+  public companyHashTags: any;
+  public companyHashTagsCount: number;
 
   constructor(private fb: FormBuilder,
               private jobService: JobService,
-              private cityListService: CityListService) {
+              private cityListService: CityListService,
+              private searchService: SearchService,
+              private zone: NgZone) {
     this.form = fb.group({
       jobTitle: ["", Validators.required],
       companyName: ["", Validators.required],
+      companyKey: ["", Validators.required],
       city: ["Hà Nội", Validators.required],
       jobType: ["fulltime", Validators.required],
       wage: ["", Validators.required],
@@ -36,9 +46,7 @@ export class JobFormAdminComponent implements OnInit, OnChanges {
       description: ["", Validators.required],
       applyMethod: ["", Validators.required],
       deadline: ["", Validators.required],
-      url: ["", Validators.required],
-      companyDescription: [""],
-      logo: [""]
+      url: ["", Validators.required]
     });
   }
 
@@ -61,6 +69,34 @@ export class JobFormAdminComponent implements OnInit, OnChanges {
     this.jobService.uploadFile(file).then((val) => {
       this.form.controls["logo"].setValue(val);
     });
+  }
+
+  onSearchName(field: any) {
+    if(field.value.length > 0) {
+      this.sub = this.searchService.doSearch({
+        index: "firebase",
+        type: "company",
+        q: field.value
+      }).subscribe(value => {
+        this.zone.run(() => {
+          if(value.hasOwnProperty("hits")) {
+            this.companyHashTagsCount = value["total"];
+            this.companyHashTags = value["hits"];
+          }
+        });
+      });
+    }
+  }
+
+  addCompany(company: any) {
+    this.form.controls["companyKey"].setValue(company._id);
+    this.form.controls["companyName"].setValue(company._source.name);
+  }
+
+  ngOnDestroy() {
+    if(this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   get valid() {

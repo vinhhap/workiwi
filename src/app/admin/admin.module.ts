@@ -14,6 +14,11 @@ import { NgModule } from '@angular/core';
 import { SidebarAdminComponent } from './shared/sidebar-admin.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { StatisticService } from "../shared/services/statistic.service";
+import { CompanyFormAdminComponent } from './company-form-admin/company-form-admin.component';
+import { NewCompanyComponent } from './new-company/new-company.component';
+import { CompanyListAdminComponent } from './company-list-admin/company-list-admin.component';
+import { EditCompanyComponent } from './edit-company/edit-company.component';
+import { JobItemAdminComponent } from './job-item-admin/job-item-admin.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +29,12 @@ import { StatisticService } from "../shared/services/statistic.service";
         NewJobComponent,
         EditJobComponent,
         SidebarAdminComponent,
-        StatisticComponent
+        StatisticComponent,
+        CompanyFormAdminComponent,
+        NewCompanyComponent,
+        CompanyListAdminComponent,
+        EditCompanyComponent,
+        JobItemAdminComponent
     ],
     imports: [
         CommonModule,

@@ -11,8 +11,9 @@ export class Job {
         public applyMethod: string,
         public deadline: string,
         public url: string,
-        public companyDescription?: string,
         public logo?: string,
+        public companyDescription?: string,
+        public companyKey?: string
     ) {}
 
     static fromJsonList(array): Job[] {
@@ -21,7 +22,7 @@ export class Job {
 
     static fromJson({$key, jobTitle, companyName, city,
         jobType, wage, address, description, applyMethod,
-        deadline, url, companyDescription, logo}): Job {
+        deadline, url, logo, companyDescription, companyKey}): Job {
         return new Job(
             $key,
             jobTitle,
@@ -34,8 +35,9 @@ export class Job {
             applyMethod,
             deadline,
             url,
+            logo,
             companyDescription,
-            logo
+            companyKey
         )
     }
 }

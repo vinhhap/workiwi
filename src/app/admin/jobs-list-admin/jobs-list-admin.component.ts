@@ -29,7 +29,7 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private seoService: SeoService,
               private pageTitleAdminService: PageTitleAdminService) {
-    seoService.setTitle('Quản lý | Workiwi | Trang tuyển dụng việc làm cho Start Up');
+    seoService.setTitle('Quản lý công việc | Workiwi | Trang tuyển dụng việc làm cho Start Up');
     seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
     seoService.setMetaRobots('None');
   }
@@ -38,7 +38,7 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
     this.sub1 = this.route.queryParams.subscribe(params => {
       this.type = params["type"];
       this.isMore = true;
-            switch(this.type) {
+      switch(this.type) {
         case "fulltime":
           this.pageTitleAdminService.changeTitle('<i aria-hidden="true" class="fa fa-battery-full"></i> Quản lý công việc [Full-time]');
           break;
@@ -96,6 +96,7 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
 
   private subFirstPage(jobs) {
     if(jobs) {
+      console.log(jobs)
       this.jobs = jobs.slice().reverse();
       if(jobs[0]) {
         this.jobKey = jobs[0].$key;

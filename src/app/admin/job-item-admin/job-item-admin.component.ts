@@ -1,20 +1,19 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Job } from "../../shared/model/job";
-import { Router } from "@angular/router";
 import { Company } from "../../shared/model/company";
 import { CompanyService } from "../../shared/services/company.service";
 import { Subscription } from "rxjs/Rx";
 
 @Component({
-  selector: 'jb-job-item',
-  templateUrl: './job-item.component.html',
-  styleUrls: ['./job-item.component.less']
+  selector: 'jb-job-item-admin',
+  templateUrl: './job-item-admin.component.html',
+  styleUrls: ['./job-item-admin.component.less']
 })
-export class JobItemComponent implements OnInit, OnDestroy {
-  
+export class JobItemAdminComponent implements OnInit, OnDestroy {
+
   @Input() job: Job;
-  private sub: Subscription;
   public company: Company;
+  private sub: Subscription;
 
   constructor(private companyService: CompanyService) { }
 
@@ -32,14 +31,4 @@ export class JobItemComponent implements OnInit, OnDestroy {
     }
   }
 
-  getJobType(jobType: string) {
-    switch(jobType) {
-      case "fulltime":
-        return "Full-time";
-      case "parttime":
-        return "Part-time";
-      case "intern":
-        return "Thực tập";
-    }
-  }
 }
