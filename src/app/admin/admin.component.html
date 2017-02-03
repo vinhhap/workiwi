@@ -41,7 +41,7 @@
             </thead>
             <tbody>
                 <tr class="even gradeC" *ngFor="let job of results">
-                    <td><a [routerLink]="['/admin/edit', job._id, job._source.url]">{{job._id}}</a></td>
+                    <td><a [routerLink]="['/admin/jobs/edit', job._id, job._source.url]">{{job._id}}</a></td>
                     <td>{{job._source.jobTitle}}</td>
                     <td>{{job._source.companyName}}</td>
                 </tr>
