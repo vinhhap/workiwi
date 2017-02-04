@@ -1,9 +1,10 @@
 <jb-search-bar-jobs></jb-search-bar-jobs>
 
-<div class="container jobs-list" infinite-scroll
+<!--<div class="container jobs-list" infinite-scroll
             [infiniteScrollDistance]="1"
             [infiniteScrollThrottle]="300"
-            (scrolled)="onScroll()">
+            (scrolled)="onScroll()">-->
+<div class="container jobs-list">
     <div class="row">
         <div class="type-search hidden-sm hidden-xs" *ngIf="!isSearch">
             <div class="col-sm-8">
@@ -27,9 +28,9 @@
             <jb-job-item *ngFor="let job of jobs" [job]="job"></jb-job-item>
         </div>
     </div>
-    <!--<div class="load_more" *ngIf="jobs && isMore && !isLoading">
+    <div class="load_more" *ngIf="jobs && isMore && !isLoading">
         <button class="button" (click)="onLoadMore()">Tải thêm</button>
-    </div>-->
+    </div>
     <div class="load_more" *ngIf="jobs && isLoading">
         <button class="button" disabled ><i class="fa fa-spinner fa-spin"></i> Đang tải</button>
     </div>

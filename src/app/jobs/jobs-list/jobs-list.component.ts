@@ -1,6 +1,6 @@
 import { SearchService } from './../../shared/services/search.service';
 import { SeoService } from './../../shared/services/seo.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { Observable } from "Rxjs/rx";
 import { Job } from "../../shared/model/job";
 import { JobService } from "../../shared/services/job.service";
@@ -35,7 +35,8 @@ export class JobsListComponent implements OnInit, OnDestroy {
               private seoService: SeoService,
               private searchService: SearchService,
               private slimLoadingBarService: SlimLoadingBarService,
-              private jobListCacheService: JobListCacheService) {
+              private jobListCacheService: JobListCacheService,
+              private zone: NgZone) {
     seoService.setTitle('Workiwi | Trang tuyển dụng việc làm cho Start Up');
     seoService.setMetaDescription('Chuyên trang tuyển dụng việc làm dành cho các Start Up');
     seoService.setMetaRobots('Index, Follow');
@@ -75,30 +76,32 @@ export class JobsListComponent implements OnInit, OnDestroy {
             type: "job",
             q: params["q"]
           }).subscribe(jobs => {
-            this.isMore = false;
-            this.isSearch = true;
-            this.slimLoadingBarService.complete();
-            let results = [];
-            if(jobs) {
-              this.totalSearch = jobs["total"];
-              if(jobs["hits"] && jobs["hits"].length > 0) {
-                results = jobs["hits"].map(job => {
-                  return {
-                    $key: job._id,
-                    jobTitle: job._source.jobTitle,
-                    city: job._source.city,
-                    companyName: job._source.companyName,
-                    url: job._source.url,
-                    logo: job._source.logo,
-                    jobType: job._source.jobType,
-                    deadline: job._source.deadline
-                  }
-                });
-                this.jobs = results.slice().reverse();
-              } else {
-                this.jobs = [];
+            this.zone.run(() => {
+              this.isMore = false;
+              this.isSearch = true;
+              this.slimLoadingBarService.complete();
+              let results = [];
+              if(jobs) {
+                this.totalSearch = jobs["total"];
+                if(jobs["hits"] && jobs["hits"].length > 0) {
+                  results = jobs["hits"].map(job => {
+                    return {
+                      $key: job._id,
+                      jobTitle: job._source.jobTitle,
+                      city: job._source.city,
+                      companyName: job._source.companyName,
+                      url: job._source.url,
+                      logo: job._source.logo,
+                      jobType: job._source.jobType,
+                      deadline: job._source.deadline
+                    }
+                  });
+                  this.jobs = results.slice().reverse();
+                } else {
+                  this.jobs = [];
+                }
               }
-            }
+            });
           });
         }
       } else {
@@ -181,11 +184,11 @@ export class JobsListComponent implements OnInit, OnDestroy {
     this.jobListCacheService.clearCache();
   }
 
-  onScroll() {
-    if(this.jobs && this.isMore && !this.isLoading) {
-      this.onLoadMore();
-    }
-  }
+  // onScroll() {
+  //   if(this.jobs && this.isMore && !this.isLoading) {
+  //     this.onLoadMore();
+  //   }
+  // }
 
   ngOnDestroy() {
     this.sub1.unsubscribe();

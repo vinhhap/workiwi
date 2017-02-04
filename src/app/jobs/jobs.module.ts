@@ -13,7 +13,7 @@ import { ShareButtonsModule } from "ng2-sharebuttons";
 import { SearchBarJobsComponent } from './shared/search-bar-jobs.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { JobListCacheService } from "../shared/services/job-list-cache.service";
-import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+// import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 
 @NgModule({
     declarations: [
@@ -33,7 +33,7 @@ import { InfiniteScrollModule } from 'angular2-infinite-scroll';
         ShareButtonsModule,
         ReactiveFormsModule,
         SlimLoadingBarModule.forRoot(),
-        InfiniteScrollModule
+        // InfiniteScrollModule
     ],
     providers: [
         JobListCacheService
