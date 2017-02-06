@@ -9,6 +9,7 @@ export class Job {
         public description: string,
         public applyMethod: string,
         public deadline: string,
+        public field: string,
         public url: string,
         public logo?: string,
         public companyDescription?: string,
@@ -21,7 +22,7 @@ export class Job {
 
     static fromJson({$key, jobTitle, companyName, city,
         jobType, wage, description, applyMethod,
-        deadline, url, logo, companyDescription, companyKey}): Job {
+        deadline, field, url, logo, companyDescription, companyKey}): Job {
         return new Job(
             $key,
             jobTitle,
@@ -32,6 +33,7 @@ export class Job {
             description,
             applyMethod,
             deadline,
+            field,
             url,
             logo,
             companyDescription,

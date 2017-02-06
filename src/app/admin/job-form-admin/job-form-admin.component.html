@@ -17,6 +17,13 @@
         </div>
 
         <div class="form-group">
+            <label>Ngành nghề - lĩnh vực</label>
+            <select class="form-control" formControlName="field">
+                <option *ngFor="let jobField of jobFields" value="{{jobField}}">{{jobField}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label>Thành phố</label>
             <select class="form-control" formControlName="city">
                 <option *ngFor="let city of citiesName" value="{{city}}">{{city}}</option>
@@ -27,7 +34,7 @@
             <label>Thể loại công việc</label>
             
             <div class="radio" *ngFor="let jobType of jobTypesName">
-                <label><input type="radio" value="{{jobType}}" formControlName="jobType">{{jobType}}</label>
+                <label><input type="radio" value="{{jobType}}" formControlName="jobType">{{jobTypeName(jobType)}}</label>
             </div>
             
         </div>

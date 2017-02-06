@@ -9,14 +9,23 @@
     "types": {
       ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'"
     },
+    "companies": {
+      ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'"
+    },
+    "cities": {
+      ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'"
+    },
+    "companyJobs": {
+      ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'"
+    },
     "search": {
       "request": {
         "$recid": {
-          ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'"
+          ".write": "true"
         }
       },
       "response": {
-        ".write": "auth.uid === '3pylwLcoPGNQjkqTxPcaVUS3xc72'",
+        ".write": "true",
         ".indexOn": ["timestamp"]
       }
     }

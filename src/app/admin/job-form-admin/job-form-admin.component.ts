@@ -14,6 +14,7 @@ import { CityListService } from "../../shared/services/city-list.service";
 import { JobTypeListService } from "../../shared/services/job-type-list.service";
 import { Subscription } from "rxjs/Rx";
 import { SearchService } from "../../shared/services/search.service";
+import { JobFieldsListService } from "../../shared/services/job-fields-list.service";
 
 @Component({
   selector: 'jb-job-form-admin',
@@ -31,17 +32,20 @@ export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
   public jobTypesName: string[];
   public companyHashTags: any;
   public companyHashTagsCount: number;
+  public jobFields: string[];
 
   constructor(private fb: FormBuilder,
               private jobService: JobService,
               private cityListService: CityListService,
               private searchService: SearchService,
               private zone: NgZone,
-              private jobTypeListService: JobTypeListService) {
+              private jobTypeListService: JobTypeListService,
+              private jobFieldsListService: JobFieldsListService) {
     this.form = fb.group({
       jobTitle: ["", Validators.required],
       companyName: ["", Validators.required],
       companyKey: ["", Validators.required],
+      field: ["Sales", Validators.required],
       city: ["Hà Nội", Validators.required],
       jobType: ["fulltime", Validators.required],
       wage: ["", Validators.required],
@@ -56,6 +60,7 @@ export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
     this.ckeditorContent = `<p>My HTML</p>`;
     this.citiesName = this.cityListService.cityName;
     this.jobTypesName = this.jobTypeListService.jobTypeName;
+    this.jobFields = this.jobFieldsListService.jobFields;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -99,6 +104,20 @@ export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy() {
     if(this.sub) {
       this.sub.unsubscribe();
+    }
+  }
+
+  jobTypeName(jobType: string) {
+    switch(jobType) {
+      case "fulltime": {
+        return "Full-time";
+      }
+      case "parttime": {
+        return "Part-time";
+      }
+      case "intern": {
+        return "Thực tập";
+      }
     }
   }
 

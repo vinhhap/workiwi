@@ -9,7 +9,7 @@
                 <a [routerLink]="['/admin/jobs/edit', job.$key, job.url]"><span class="job_title">{{job.jobTitle}}</span></a>
                 <span class="job_key">{{job.$key}} - {{job.companyName}}</span>
             </div>
-            <button class="btn btn-default job_type" (click)="onRemove(job.$key, job.jobType, job.city)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            <button class="btn btn-default job_type" (click)="onRemove(job.$key, job.jobType, job.city, job.companyKey, job.field)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
         </div>
     </div>
 </div>

@@ -42,9 +42,9 @@ export class EditJobComponent implements OnInit, OnDestroy {
     this.jobService.editJob(form.form.value, this.jobId, this.job);
   }
 
-  onRemove(key: string, type: string, city: string) {
+  onRemove(key: string, type: string, city: string, companyKey: string, field: string) {
     if(confirm("Bạn muốn xóa công việc này?")) {
-      this.jobService.removeJob(key, type, city);
+      this.jobService.removeJob(key, type, city, companyKey, field);
     }
   }
 

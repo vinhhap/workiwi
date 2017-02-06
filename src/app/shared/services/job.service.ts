@@ -106,30 +106,52 @@ export class JobService {
       this.af.database.object(`types/${job.jobType}/${item.key}`).set(true);
       this.af.database.object(`cities/${job.city}/${item.key}`).set(true);
       this.af.database.object(`companyJobs/${job.companyKey}/${item.key}`).set(true);
+      this.af.database.object(`jobFields/${job.field}/${item.key}`).set(true);
       this.router.navigate(["/jobs", item.key, job.url]);
     });
   }
   
+  // editJob(job: Job, jobId: string, currentJobValue: Job): void {
+  //   let theJob = this.af.database.object(`jobs/${jobId}`);
+  //   if(job.jobType !== currentJobValue.jobType || job.city !== currentJobValue.city || job.companyKey !== currentJobValue.companyKey || job.field !== currentJobValue.field) {
+  //     this.af.database.object(`types/${currentJobValue.jobType}/${jobId}`).remove();
+  //     this.af.database.object(`types/${job.jobType}/${jobId}`).set(true);
+  //     this.af.database.object(`cities/${currentJobValue.city}/${jobId}`).remove();
+  //     this.af.database.object(`cities/${job.city}/${jobId}`).set(true);
+  //     this.af.database.object(`companyJobs/${currentJobValue.companyKey}/${jobId}`).remove();
+  //     this.af.database.object(`companyJobs/${job.companyKey}/${jobId}`).set(true);
+  //     this.af.database.object(`jobFields/${currentJobValue.field}/${jobId}`).remove();
+  //     this.af.database.object(`jobFields/${job.field}/${jobId}`).set(true);
+  //   }
+  //   theJob.update(job).then(() => { this.router.navigate(["/jobs", jobId, job.url]) });
+  // }
+
   editJob(job: Job, jobId: string, currentJobValue: Job): void {
     let theJob = this.af.database.object(`jobs/${jobId}`);
-    if(job.jobType !== currentJobValue.jobType || job.city !== currentJobValue.city || job.companyKey !== currentJobValue.companyKey) {
+    
       this.af.database.object(`types/${currentJobValue.jobType}/${jobId}`).remove();
       this.af.database.object(`types/${job.jobType}/${jobId}`).set(true);
       this.af.database.object(`cities/${currentJobValue.city}/${jobId}`).remove();
       this.af.database.object(`cities/${job.city}/${jobId}`).set(true);
       this.af.database.object(`companyJobs/${currentJobValue.companyKey}/${jobId}`).remove();
       this.af.database.object(`companyJobs/${job.companyKey}/${jobId}`).set(true);
-    }
+      this.af.database.object(`jobFields/${currentJobValue.field}/${jobId}`).remove();
+      this.af.database.object(`jobFields/${job.field}/${jobId}`).set(true);
+    
     theJob.update(job).then(() => { this.router.navigate(["/jobs", jobId, job.url]) });
   }
 
-  removeJob(jobId: string, type: string, city: string): void {
+  removeJob(jobId: string, type: string, city: string, companyKey: string, field: string): void {
     let theJob = this.af.database.object(`jobs/${jobId}`);
     let jobType = this.af.database.object(`types/${type}/${jobId}`);
     let jobCity = this.af.database.object(`cities/${city}/${jobId}`);
+    let jobCompany = this.af.database.object(`companyJobs/${companyKey}/${jobId}`);
+    let jobField = this.af.database.object(`jobFields/${field}/${jobId}`);
     theJob.remove();
     jobType.remove();
     jobCity.remove();
+    jobCompany.remove();
+    jobField.remove();
   }
 
   uploadFile(file: any) {

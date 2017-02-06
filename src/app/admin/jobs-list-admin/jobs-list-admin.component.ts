@@ -85,22 +85,23 @@ export class JobsListAdminComponent implements OnInit, OnDestroy {
   }
 
    private subLoadMore(jobs) {
-    this.isLoading = false;
-    if(jobs.length <= 1) {
-      this.isMore = false;
+    if(jobs.length > 0 && jobs[jobs.length - 1].$key === this.jobKey) {
+      this.isLoading = false;
+      if(jobs.length <= 1) {
+        this.isMore = false;
+      }
+      this.jobKey = jobs[0].$key;
+      jobs.pop();
+      this.jobs = this.jobs.concat(jobs.slice().reverse());
     }
-    this.jobKey = jobs[0].$key;
-    jobs.pop();
-    this.jobs = this.jobs.concat(jobs.slice().reverse());
   }
 
   private subFirstPage(jobs) {
-    if(jobs) {
-      console.log(jobs)
+    if(jobs.length > 0) {
       this.jobs = jobs.slice().reverse();
-      if(jobs[0]) {
-        this.jobKey = jobs[0].$key;
-      }
+      this.jobKey = jobs[0].$key;
+    } else {
+      this.jobs = [];
     }
   }
 
