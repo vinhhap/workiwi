@@ -8,6 +8,7 @@ import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Company } from "../../shared/model/company";
 import { CompanyService } from "../../shared/services/company.service";
 import { SeoService } from "../../shared/services/seo.service";
+import { JobListCacheService } from "../../shared/services/job-list-cache.service";
 
 @Component({
   selector: 'jb-job-detail',
@@ -34,7 +35,8 @@ export class JobDetailComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private slimLoadingBarService: SlimLoadingBarService,
               private companyService: CompanyService,
-              private seoService: SeoService
+              private seoService: SeoService,
+              private jobListCacheService: JobListCacheService
   ) {
   }
 
@@ -81,6 +83,10 @@ export class JobDetailComponent implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  clearCache() {
+    this.jobListCacheService.clearCache();
   }
 
   ngOnDestroy() {

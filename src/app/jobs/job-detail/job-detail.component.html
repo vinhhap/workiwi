@@ -39,7 +39,7 @@
                                 Thành phố
                             </div>
                             <div class="col-val">
-                                <a [routerLink]="['/jobs']" [queryParams]='{ city: job?.city }'>
+                                <a [routerLink]="['/jobs']" [queryParams]='{ city: job?.city }' (click)="clearCache()">
                                     {{job?.city}}
                                 </a>
                             </div>
@@ -49,7 +49,7 @@
                                 Thể loại
                             </div>
                             <div class="col-val">
-                                <a [routerLink]="['/jobs']" [queryParams]="{ type: job?.jobType }">
+                                <a [routerLink]="['/jobs']" [queryParams]="{ type: job?.jobType }" (click)="clearCache()">
                                     {{job?.jobType | jobTypeName}}
                                 </a>
                             </div>
