@@ -6,7 +6,6 @@ export class Job {
         public city: string,
         public jobType: string,
         public wage: string,
-        public address: string,
         public description: string,
         public applyMethod: string,
         public deadline: string,
@@ -21,7 +20,7 @@ export class Job {
     }
 
     static fromJson({$key, jobTitle, companyName, city,
-        jobType, wage, address, description, applyMethod,
+        jobType, wage, description, applyMethod,
         deadline, url, logo, companyDescription, companyKey}): Job {
         return new Job(
             $key,
@@ -30,7 +29,6 @@ export class Job {
             city,
             jobType,
             wage,
-            address,
             description,
             applyMethod,
             deadline,

@@ -1,89 +1,225 @@
 @import "../../shared/less/variables.less";
-.job_detail {
-    padding: 0;
-    font-size: 1.2em;
-    margin-bottom: 5rem;
-    .panel {
-        border-radius: 0;
-    }
-    .panel-heading {
-        position: relative;
-        .job_detail_title {
-            font-weight: 700;
-            font-size: 1.6em;
-            margin-bottom: 0.5em;
-            max-width: 900px;
-        }
-        .job_detail_location {
-            font-weight: 500;
-            font-size: 1.3em;
-            margin-bottom: 0.8em;
-            max-width: 900px;
-        }
-        .job_detail_apply_lg {
-            background: @highlight_3;
-            border-color: @highlight_3;
-            font-size: 1.1em;
-            border-radius: 100em 0 0 100em;
-            padding: 0.8em 2em 0.8em 2.5em;
-            position: absolute;
-            top: 30px;
-            right: 0;
-            &:hover, &:active {
-                background: darken(@highlight_3, 10);
-                border-color: darken(@highlight_3, 10);
-            }
-        }
-        .job_detail_apply_sm {
-            background: @highlight_3;
-            border-color: @highlight_3;
-            font-size: 1.1em;
-            border-radius: 0.5em;
-            padding: 0.8em 2.5em;
-            margin-top: 0.8em;
-            &:hover, &:active {
-                background: darken(@highlight_3, 10);
-                border-color: darken(@highlight_3, 10);
-            }
-        }
-        .job_detail_brief {
-            margin-top: 1.5em;
-            border: 1px solid @border;
-            width: 100%;
-            background: white;
-            tr {
-                border-bottom: 1px solid @border;
-            }
-            td {
-                padding: 0.8em;
-                border-right: 1px solid @border;
-            }
-        }
-    }
-    .panel-body {
-        h3 {
-            font-weight: 700 !important;
-        }
-    }
+// .job_detail {
+//     padding: 0;
+//     font-size: 1.2em;
+//     margin-bottom: 5rem;
+//     .panel {
+//         border-radius: 0;
+//     }
+//     .panel-heading {
+//         position: relative;
+//         .job_detail_title {
+//             font-weight: 700;
+//             font-size: 1.6em;
+//             margin-bottom: 0.5em;
+//             max-width: 900px;
+//         }
+//         .job_detail_location {
+//             font-weight: 500;
+//             font-size: 1.3em;
+//             margin-bottom: 0.8em;
+//             max-width: 900px;
+//         }
+//         .job_detail_apply_lg {
+//             background: @highlight_3;
+//             border-color: @highlight_3;
+//             font-size: 1.1em;
+//             border-radius: 100em 0 0 100em;
+//             padding: 0.8em 2em 0.8em 2.5em;
+//             position: absolute;
+//             top: 30px;
+//             right: 0;
+//             &:hover, &:active {
+//                 background: darken(@highlight_3, 10);
+//                 border-color: darken(@highlight_3, 10);
+//             }
+//         }
+//         .job_detail_apply_sm {
+//             background: @highlight_3;
+//             border-color: @highlight_3;
+//             font-size: 1.1em;
+//             border-radius: 0.5em;
+//             padding: 0.8em 2.5em;
+//             margin-top: 0.8em;
+//             &:hover, &:active {
+//                 background: darken(@highlight_3, 10);
+//                 border-color: darken(@highlight_3, 10);
+//             }
+//         }
+//         .job_detail_brief {
+//             margin-top: 1.5em;
+//             border: 1px solid @border;
+//             width: 100%;
+//             background: white;
+//             tr {
+//                 border-bottom: 1px solid @border;
+//             }
+//             td {
+//                 padding: 0.8em;
+//                 border-right: 1px solid @border;
+//             }
+//         }
+//     }
+//     .panel-body {
+//         h3 {
+//             font-weight: 700 !important;
+//         }
+//     }
     
-    .panel-footer {
-        padding-bottom: 1.5em;
-        min-height: 200px;
-        h3 {
-            font-weight: 700;
-            font-size: 1.6em;
-            margin-bottom: 1em;
+//     .panel-footer {
+//         padding-bottom: 1.5em;
+//         min-height: 200px;
+//         h3 {
+//             font-weight: 700;
+//             font-size: 1.6em;
+//             margin-bottom: 1em;
+//         }
+//         .job_detail_logo {
+//             img {
+//                 float:left;
+//                 padding-right: 1em;
+//                 max-width: 100px;
+//             }
+//         }
+//     }
+// }
+
+.job-detail {
+    // .panel {
+    //     -webkit-box-shadow: -2px 2px 15px 0px rgba(214,214,214,1);
+    //     -moz-box-shadow: -2px 2px 15px 0px rgba(214,214,214,1);
+    //     box-shadow: -2px 2px 15px 0px rgba(214,214,214,1);
+    // }
+    .main {
+        .panel-heading {
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background: #fff;
+            .logo-wrapper {
+                img {
+                    max-width: 100px;
+                    cursor: pointer;
+                }
+                margin-right: 20px;
+            }
+            .title {
+                .company-name {
+                    color: #5F6977;
+                    font-size: 2rem;
+                    font-weight: 400;
+                    margin-top: 0;
+                }
+                .job-title {
+                    margin-bottom: 0;
+                    font-size: 2.2rem;
+                    margin-top: 0;
+                    font-weight: 600;
+                    color: #474747;
+                }
+            }
         }
-        .job_detail_logo {
-            img {
-                float:left;
-                padding-right: 1em;
-                max-width: 100px;
+        .panel-body {
+            color: #5F6977;
+            font-size: 1.8rem;
+            padding: 25px 20px 20px 20px;
+            h3 {
+                margin-top: 25px;
+                margin-bottom: 25px;
+                font-size: 2.2rem;
+                font-weight: 600;
+                color: #474747;
+            }
+            h3:first-child {
+                margin-top: 0;
+            }
+            #apply {
+                h3 {
+                    margin-top: 25px !important;
+                }
+            }
+        }
+    }
+    .info {
+        .panel-heading {
+            background: #fff;
+            padding: 15px 0 11px 0;
+            h4 {
+                margin-top: 0;
+                color: #474747;
+                font-weight: 600;
+            }
+        }
+        .panel-body {
+            padding: 0 20px 0 20px;
+            .list-group {
+                margin: 0;
+                .list-group-item:first-child {
+                    border-top: none;
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                }
+                .list-group-item:last-child {
+                    border-bottom: none;
+                }
+                .list-group-item {
+                    border-left: none;
+                    border-right: none;
+                    padding-left: 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    font-size: 1.5rem;
+                    .col-title {
+                        margin-right: auto;
+                        font-weight: 600;
+                        color: #474747;
+                    }
+                    .col-val {
+                        color: #5F6977;
+                    }
+                } 
+            }
+        }
+        .panel-footer {
+            background: #fff;
+            .apply-btn {
+                font-size: 1.6rem;
+                letter-spacing: 1px;
+                background: @highlight_3;
+                border-color: @highlight_3;
+                &:hover, &:active {
+                    background: darken(@highlight_3, 10);
+                    border-color: darken(@highlight_3, 10);
+                }
             }
         }
     }
 }
 
-
+#company-detail {
+    .modal-content {
+        border-radius: 0;
+    } 
+    .company-detail-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        img {
+            max-width: 100px;
+        }
+        h4 {
+            margin-left: 20px;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #474747;
+        }
+    }
+    .modal-body {
+        color: #5F6977;
+        font-size: 1.8rem;
+    }
+}
 
 

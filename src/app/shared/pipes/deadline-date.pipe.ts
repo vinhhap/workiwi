@@ -10,13 +10,13 @@ export class DeadlineDatePipe implements PipeTransform {
   transform(value: string, args?: any): any {
     if (!value) return value;
 
-    let fuck = moment(value, "DD-MM-YYYY");
+    let that = moment(value, "DD-MM-YYYY");
     let now = moment(moment().format("DD-MM-YY"), "DD-MM-YY");
-    if(fuck.isSame(now)) {
+    if(that.isSame(now)) {
       return "Hôm nay";
-    } else if(fuck.isBefore(now)){
+    } else if(that.isBefore(now)){
       return "Hết hạn";
-    } else if(fuck.isAfter(now)) {
+    } else if(that.isAfter(now)) {
       return value;
     }
   }

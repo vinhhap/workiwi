@@ -14,6 +14,8 @@ import { SearchBarJobsComponent } from './shared/search-bar-jobs.component';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { JobListCacheService } from "../shared/services/job-list-cache.service";
 // import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { JobTypePipe } from "../shared/pipes/job-type.pipe";
+import { ClientLoadingComponent } from './shared/client-loading.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +25,9 @@ import { JobListCacheService } from "../shared/services/job-list-cache.service";
         JobDetailComponent,
         JobsComponent,
         SearchBarJobsComponent,
-        DeadlineDatePipe
+        DeadlineDatePipe,
+        JobTypePipe,
+        ClientLoadingComponent
     ],
     imports: [
         CommonModule,

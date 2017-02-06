@@ -31,15 +31,4 @@ export class JobItemComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
-
-  getJobType(jobType: string) {
-    switch(jobType) {
-      case "fulltime":
-        return "Full-time";
-      case "parttime":
-        return "Part-time";
-      case "intern":
-        return "Thực tập";
-    }
-  }
 }

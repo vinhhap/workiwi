@@ -22,6 +22,8 @@ import { AuthService } from "./shared/services/auth.service";
 import { SearchService } from './shared/services/search.service';
 import { CityListService } from "./shared/services/city-list.service";
 import { CompanyService } from "./shared/services/company.service";
+import { JobTypeListService } from "./shared/services/job-type-list.service";
+
 
 @NgModule({
   declarations: [
@@ -34,8 +36,7 @@ import { CompanyService } from "./shared/services/company.service";
     AngularFireModule.initializeApp(firebaseConfig, authConfig),
     JobsModule,
     SessionsModule,
-    AdminModule,
-
+    AdminModule
   ],
   providers: [
     JobService,
@@ -43,7 +44,8 @@ import { CompanyService } from "./shared/services/company.service";
     SeoService,
     SearchService,
     CityListService,
-    CompanyService
+    CompanyService,
+    JobTypeListService
   ],
   bootstrap: [AppComponent]
 })

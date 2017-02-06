@@ -6,8 +6,9 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     height: 100%;
+    background: #F6F6F6;
 }
 
 .clearfix:before, .clearfix:after {
@@ -52,18 +53,26 @@ a {
     cursor: pointer;
 }
 
-.facebook, .google_plus, .linked_in, .twitter {
-    width: 50px;
+.inner-info-detail {
+    color: #5F6977;
+    font-size: 1.8rem;
+    h3:first-child {
+        margin-top: 0;
+    }
+    h3, h3 strong {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: #474747;
+    }
+}
+
+.social-btn {
     background: none;
     border: none;
     img {
-        width: 50px;
-    }
-    @media(max-width:767px) {
-        width: 56px;
-        img {
-            width: 38px !important;
-        }
+        width: 38px;
     }
 }
 

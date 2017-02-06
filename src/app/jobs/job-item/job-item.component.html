@@ -10,7 +10,7 @@
                     <span class="job_title">{{job.jobTitle}}</span>
                     <span class="job_info">{{job.companyName}} <span>&bull;</span> {{job.city}} <span>&bull;</span> {{job.deadline | deadlineDate}}</span>
                 </div>
-                <span class="job_type {{job.jobType}} hidden-xs">{{getJobType(job.jobType)}}</span>
+                <span class="job_type {{job.jobType}} hidden-xs">{{job.jobType | jobTypeName}}</span>
             </div>
         </div>
     </a>

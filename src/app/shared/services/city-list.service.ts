@@ -71,6 +71,6 @@ export class CityListService {
       "Hà Nội",
       "Hồ Chí Minh",
       "Nhiều Nơi"
-    ]
+    ];
   }
 }

@@ -24,23 +24,10 @@
         </div>
 
         <div class="form-group">
-            <label>Địa chỉ làm việc</label>
-            <input class="form-control" formControlName="address">
-        </div>
-
-        <div class="form-group">
             <label>Thể loại công việc</label>
             
-            <div class="radio">
-                <label><input type="radio" value="fulltime" formControlName="jobType">Full-time</label>
-            </div>
-
-            <div class="radio">
-                <label><input type="radio" value="parttime" formControlName="jobType">Part-time</label>
-            </div>
-            
-            <div class="radio">
-                <label><input type="radio" value="intern" formControlName="jobType">Thực tập</label>
+            <div class="radio" *ngFor="let jobType of jobTypesName">
+                <label><input type="radio" value="{{jobType}}" formControlName="jobType">{{jobType}}</label>
             </div>
             
         </div>

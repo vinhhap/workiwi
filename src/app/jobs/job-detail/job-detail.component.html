@@ -1,74 +1,100 @@
-<div class="container job_detail">
+<jb-client-loading *ngIf="isLoading"></jb-client-loading>
+
+<div class="container job-detail" *ngIf="!isLoading">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-8 main">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="job_detail_title">{{job?.jobTitle}}</h3>
-                    <h4 class="job_detail_location"><i class="fa fa-building" aria-hidden="true"></i> tại {{job?.companyName}}, {{job?.city}}</h4>
-                    <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_lg hidden-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ứng tuyển</a>
-                    <a simplePageScroll href="#apply" class="btn btn-success job_detail_apply_sm visible-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ứng tuyển</a>
-                    <table class="job_detail_brief">
-                        <tbody>
-                            <tr>
-                                <td>LOẠI CÔNG VIỆC</td>
-                                <td>{{getJobType(job?.jobType)}}</td>
-                            </tr>
-                            <tr>
-                                <td>DEADLINE</td>
-                                <td>{{job?.deadline | deadlineDate}}</td>
-                            </tr>
-                            <tr>
-                                <td>MỨC LƯƠNG</td>
-                                <td>{{job?.wage}}</td>
-                            </tr>
-                            <tr>
-                                <td>ĐỊA ĐIỂM LÀM VIỆC</td>
-                                <td>{{job?.address}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="panel-body">
-                    <div [innerHTML]="job?.description"></div>
-                    <h3 id="apply">Cách thức ứng tuyển</h3>
-                    <div [innerHTML]="job?.applyMethod"></div>
-                    <hr>
-                    <div class="share-button-area text-center">
-                        <h3>Chia sẻ công việc này trên mạng xã hội</h3>
-                        <br>
-                        <div class="row">
-                            
-                            <!--<share-button [button]='facebookButton' [description]="description" [image]="image" [title]="title"></share-button>
-                            <share-button [button]='googlePlusButton' [description]="description" [image]="image" [title]="title"></share-button>
-                            <share-button [button]='linkedButton' [description]="description" [image]="image"></share-button>
-                            <share-button [button]='twitterButton' [title]="title" [description]="description" [image]="image"></share-button>-->
-
-                            <share-button [button]='facebookButton' [description]="description" [title]="title"></share-button>
-                            <share-button [button]='googlePlusButton' [description]="description" [title]="title"></share-button>
-                            <share-button [button]='linkedButton' [description]="description" ></share-button>
-                            <share-button [button]='twitterButton' [title]="title" [description]="description" ></share-button>
-                        
-                        </div>
-                        <br>
+                    <div class="logo-wrapper">
+                        <img [src]="job?.logo" [alt]="job?.companyName" *ngIf="job?.logo" data-toggle="modal" data-target="#company-detail">
+                        <img [src]="company?.logoUrl" [alt]="job?.companyName" *ngIf="!job?.logo && company?.logoUrl" data-toggle="modal" data-target="#company-detail">
+                    </div>
+                    <div class="title">
+                        <h2 class="company-name">{{job?.companyName}}</h2>
+                        <h1 class="job-title">{{job?.jobTitle}}</h1>
                     </div>
                 </div>
-
-                <div class="panel-footer" *ngIf="job?.companyDescription">
-                    <h3>Giới thiệu về công ty</h3>
-                    <p class="job_detail_logo">
-                        <img [src]="job?.logo" [alt]="job?.companyName">
-                        <span [innerHTML]="job?.companyDescription"></span>
-                    </p>
+                <div class="panel-body">
+                    <div [innerHTML]="job?.description" class="inner-info-detail"></div>
+                    <div id="apply">
+                        <h3>Cách thức ứng tuyển</h3>
+                        <div [innerHTML]="job?.applyMethod"></div>
+                    </div>
                 </div>
-
-                <div class="panel-footer" *ngIf="!job?.companyDescription && (company?.name || company?.comDes)">
-                    <h3>Giới thiệu về công ty</h3>
-                    <p class="job_detail_logo">
-                        <img [src]="company?.logoUrl" [alt]="job?.companyName">
-                        <span [innerHTML]="company?.comDes"></span>
-                    </p>
+            </div>
+        </div>
+        <div class="col-md-4 info">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h4>Chia sẻ công việc</h4>
+                    <share-button [button]='facebookButton' [description]="description" [title]="title"></share-button>
+                    <share-button [button]='googlePlusButton' [description]="description" [title]="title"></share-button>
+                    <share-button [button]='linkedButton' [description]="description" ></share-button>
+                    <share-button [button]='twitterButton' [title]="title" [description]="description" ></share-button>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="col-title">
+                                Thành phố
+                            </div>
+                            <div class="col-val">
+                                <a [routerLink]="['/jobs']" [queryParams]='{ city: job?.city }'>
+                                    {{job?.city}}
+                                </a>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="col-title">
+                                Thể loại
+                            </div>
+                            <div class="col-val">
+                                <a [routerLink]="['/jobs']" [queryParams]="{ type: job?.jobType }">
+                                    {{job?.jobType | jobTypeName}}
+                                </a>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="col-title">
+                                Deadline
+                            </div>
+                            <div class="col-val">
+                                {{job?.deadline | deadlineDate}}
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="col-title">
+                                Mức lương
+                            </div>
+                            <div class="col-val">
+                                {{job?.wage}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <a simplePageScroll href="#apply" class="btn btn-success btn-block apply-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ứng tuyển</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div id="company-detail" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <img [src]="job?.logo" [alt]="job?.companyName" *ngIf="job?.logo">
+        <div class="company-detail-title">
+            <img [src]="company?.logoUrl" [alt]="job?.companyName" *ngIf="!job?.logo && company?.logoUrl">
+            <h4 class="modal-title">Beeketing</h4>
+        </div>
+      </div>
+      <div class="modal-body">
+        <span [innerHTML]="job?.companyDescription" *ngIf="job?.companyDescription"></span>
+        <span [innerHTML]="company?.comDes" *ngIf="!job?.companyDescription && (company?.name || company?.comDes)"></span>
+      </div>
+    </div>
+  </div>
 </div>

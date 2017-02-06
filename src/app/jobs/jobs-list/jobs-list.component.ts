@@ -90,6 +90,7 @@ export class JobsListComponent implements OnInit, OnDestroy {
                       jobTitle: job._source.jobTitle,
                       city: job._source.city,
                       companyName: job._source.companyName,
+                      companyKey: job._source.companyKey,
                       url: job._source.url,
                       logo: job._source.logo,
                       jobType: job._source.jobType,

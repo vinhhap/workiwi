@@ -28,13 +28,15 @@ export class JobDetailComponent implements OnInit, OnDestroy {
   public title = ""
   public image = "";
   public company: Company;
+  public isLoading: boolean = true;
 
   constructor(private jobService: JobService,
               private route: ActivatedRoute,
               private slimLoadingBarService: SlimLoadingBarService,
               private companyService: CompanyService,
               private seoService: SeoService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.slimLoadingBarService.start();
@@ -68,6 +70,7 @@ export class JobDetailComponent implements OnInit, OnDestroy {
         this.description = `${this.job.jobTitle} tại ${this.job.city}. Click vào link để xem chi tiết`;
         this.title = `${this.job.jobTitle} | Workiwi | Trang tuyển dụng việc làm cho Start Up`;
         this.image = this.job.logo;
+        this.isLoading = false;
         if(this.job.companyKey) {
           this.sub2 = this.companyService.findCompanyById(this.job.companyKey).subscribe(val => {
             this.company = val;
@@ -78,17 +81,6 @@ export class JobDetailComponent implements OnInit, OnDestroy {
         }
       }
     });
-  }
-
-  getJobType(jobType: string) {
-    switch(jobType) {
-      case "fulltime":
-        return "Full-time";
-      case "parttime":
-        return "Part-time";
-      case "intern":
-        return "Thực tập";
-    }
   }
 
   ngOnDestroy() {

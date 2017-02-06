@@ -11,6 +11,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { JobService } from "../../shared/services/job.service";
 import { CityListService } from "../../shared/services/city-list.service";
+import { JobTypeListService } from "../../shared/services/job-type-list.service";
 import { Subscription } from "rxjs/Rx";
 import { SearchService } from "../../shared/services/search.service";
 
@@ -27,6 +28,7 @@ export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
   private sub: Subscription;
   private job: Job;
   public citiesName: string[];
+  public jobTypesName: string[];
   public companyHashTags: any;
   public companyHashTagsCount: number;
 
@@ -34,7 +36,8 @@ export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
               private jobService: JobService,
               private cityListService: CityListService,
               private searchService: SearchService,
-              private zone: NgZone) {
+              private zone: NgZone,
+              private jobTypeListService: JobTypeListService) {
     this.form = fb.group({
       jobTitle: ["", Validators.required],
       companyName: ["", Validators.required],
@@ -42,7 +45,6 @@ export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
       city: ["Hà Nội", Validators.required],
       jobType: ["fulltime", Validators.required],
       wage: ["", Validators.required],
-      address: ["", Validators.required],
       description: ["", Validators.required],
       applyMethod: ["", Validators.required],
       deadline: ["", Validators.required],
@@ -53,6 +55,7 @@ export class JobFormAdminComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
     this.ckeditorContent = `<p>My HTML</p>`;
     this.citiesName = this.cityListService.cityName;
+    this.jobTypesName = this.jobTypeListService.jobTypeName;
   }
 
   ngOnChanges(changes: SimpleChanges) {

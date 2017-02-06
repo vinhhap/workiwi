@@ -34,7 +34,7 @@ import { JobItemAdminComponent } from './job-item-admin/job-item-admin.component
         NewCompanyComponent,
         CompanyListAdminComponent,
         EditCompanyComponent,
-        JobItemAdminComponent
+        JobItemAdminComponent,
     ],
     imports: [
         CommonModule,

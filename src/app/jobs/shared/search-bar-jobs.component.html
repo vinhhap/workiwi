@@ -1,4 +1,4 @@
-<div class="jumbotron specialjum search-bar">
+<!--<div class="jumbotron specialjum search-bar">
     <div class="over container body-content">
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
@@ -16,7 +16,46 @@
                         </span>
                     </div>
                 </form>
-            </div><!-- /.col-lg-6 -->
-        </div><!-- /.row -->
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="jumbotron search-bar">
+    <div class="container">
+        <div class="row search-bar-outter">
+            <div class="col-sm-12">
+                <div class="row search-bar-inner">
+                    <form [formGroup]="form">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="sr-only">Từ khóa</label>
+                                <input type="text" class="form-control search-box" placeholder="Nhập tên công việc hoặc từ khóa..." formControlName="keyword">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="sr-only">Hình thức</label>
+                                <select class="form-control search-box" formControlName="jobType">
+                                    <option value="" disabled hidden>Hình thức công việc</option>
+                                    <option *ngFor="let jobType of jobTypesName" value="{{jobType}}">{{jobType | jobTypeName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="sr-only">Thành phố</label>
+                                <select class="form-control search-box" formControlName="city">
+                                    <option value="" disabled hidden>Thành phố</option>
+                                    <option *ngFor="let city of citiesName" value="{{city}}">{{city}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-block btn-default" (click)="onSearch()">Tìm kiếm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

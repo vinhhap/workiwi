@@ -1,7 +1,9 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { JobListCacheService } from "../../shared/services/job-list-cache.service";
+import { CityListService } from "../../shared/services/city-list.service";
+import { JobTypeListService } from "../../shared/services/job-type-list.service";
 
 @Component({
   selector: 'jb-search-bar-jobs',
@@ -11,27 +13,40 @@ import { JobListCacheService } from "../../shared/services/job-list-cache.servic
 export class SearchBarJobsComponent implements OnInit {
 
   form: FormGroup;
+  public citiesName: string[];
+  public jobTypesName: string[];
 
   constructor(private router: Router,
               private fb: FormBuilder,
-              private route: ActivatedRoute,
-              private jobListCacheService: JobListCacheService) { }
+              private jobListCacheService: JobListCacheService,
+              private cityListService: CityListService,
+              private jobTypeListService: JobTypeListService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
-      q: [""]
+      keyword: [""],
+      jobType: [""],
+      city: [""]
     });
-    this.route.queryParams.subscribe(params => {
-      if(params["q"]) {
-        this.form.controls["q"].setValue(params["q"]);
-      }
-    })
+
+    this.citiesName = this.cityListService.cityName;
+    this.jobTypesName = this.jobTypeListService.jobTypeName;
   }
 
   onSearch() {
     this.jobListCacheService.clearCache();
-    if(this.form.controls["q"].value) {
-      this.router.navigate(["/jobs"], {queryParams: {q: this.form.controls["q"].value}, relativeTo: this.route });
+    let query = "";
+    if(this.form.controls["keyword"].value) {
+      query = query + `+jobTitle:${this.form.controls["keyword"].value}`;
+    }
+    if(this.form.controls["jobType"].value) {
+      query = query + " " + `+jobType:${this.form.controls["jobType"].value}`;
+    }
+    if(this.form.controls["city"].value) {
+      query = query + " " + `+city:${this.form.controls["city"].value}`;
+    }
+    if(query.length > 0) {
+      this.router.navigate(["/jobs"], {queryParams: {q: query} });
     }
   }
 
