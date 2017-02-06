@@ -37,7 +37,7 @@ export class SearchBarJobsComponent implements OnInit {
     this.jobListCacheService.clearCache();
     let query = "";
     if(this.form.controls["keyword"].value) {
-      query = query + `+jobTitle:${this.form.controls["keyword"].value}`;
+      query = query + `+jobTitle:*${this.form.controls["keyword"].value}*`;
     }
     if(this.form.controls["jobType"].value) {
       query = query + " " + `+jobType:${this.form.controls["jobType"].value}`;
